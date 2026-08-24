@@ -23,6 +23,8 @@ import type {
   ConverseCommandOutput,
   ConverseStreamCommandInput,
   ConverseStreamOutput,
+  Message,
+  ToolConfiguration,
 } from '@aws-sdk/client-bedrock-runtime'
 import type {
   JSONSchema,
@@ -250,10 +252,10 @@ export class BedrockConverseTextAdapter<
         `activity=structuredOutput provider=${this.name} model=${this.model} messages=${chatOptions.messages.length}`,
         { provider: this.name, model: this.model },
       )
-      const input: ConverseCommandInput = {
-        ...this.buildInput(chatOptions),
-        toolConfig: buildStructuredToolConfig(outputSchema),
-      }
+      const input = this.buildInput(
+        chatOptions,
+        buildStructuredToolConfig(outputSchema),
+      )
       const res = await this.send(input)
       const structured = extractStructuredToolInput(res)
       if (structured === undefined) {
@@ -300,10 +302,10 @@ export class BedrockConverseTextAdapter<
         `activity=structuredOutputStream provider=${this.name} model=${this.model} messages=${chatOptions.messages.length}`,
         { provider: this.name, model: this.model },
       )
-      const input: ConverseStreamCommandInput = {
-        ...this.buildInput(chatOptions),
-        toolConfig: buildStructuredToolConfig(outputSchema),
-      }
+      const input: ConverseStreamCommandInput = this.buildInput(
+        chatOptions,
+        buildStructuredToolConfig(outputSchema),
+      )
       const stream = await this.sendStream(input)
 
       // The forced tool streams its `input` as partial-JSON fragments inside
@@ -501,15 +503,25 @@ export class BedrockConverseTextAdapter<
    */
   protected buildInput(
     options: TextOptions<TProviderOptions>,
+    toolConfigOverride?: ToolConfiguration,
   ): ConverseCommandInput {
     const { system, messages } = toConverseMessages(
       options.messages,
       options.systemPrompts,
     )
 
-    const toolConfig = options.tools
-      ? toToolConfig(convertTools(options.tools), 'auto')
-      : undefined
+    const toolConfig =
+      toolConfigOverride ??
+      (options.tools
+        ? toToolConfig(convertTools(options.tools), 'auto')
+        : undefined)
+
+    // Converse rejects historical toolUse/toolResult blocks when this request
+    // has no toolConfig. Supplying a placeholder tool would make a callable
+    // capability available merely to satisfy the wire protocol, so retain the
+    // historical evidence as inert JSON text instead.
+    const safeMessages =
+      toolConfig === undefined ? inertToolHistory(messages) : messages
 
     // Sampling options live on `modelOptions` (typed as the narrowed
     // `BedrockConverseProviderOptions`, which surfaces the OpenAI Chat
@@ -538,12 +550,43 @@ export class BedrockConverseTextAdapter<
 
     return {
       modelId: this.model,
-      messages,
+      messages: safeMessages,
       ...(system.length > 0 && { system }),
       ...(toolConfig && { toolConfig }),
       ...(inferenceConfig && { inferenceConfig }),
     }
   }
+}
+
+function inertToolHistory(messages: Array<Message>): Array<Message> {
+  return messages.map((message) => ({
+    ...message,
+    content: (message.content ?? []).map((block) => {
+      if (block.toolUse !== undefined) {
+        return {
+          text: JSON.stringify({
+            previousToolCall: {
+              id: block.toolUse.toolUseId,
+              name: block.toolUse.name,
+              arguments: block.toolUse.input,
+            },
+          }),
+        }
+      }
+      if (block.toolResult !== undefined) {
+        return {
+          text: JSON.stringify({
+            previousToolResult: {
+              id: block.toolResult.toolUseId,
+              status: block.toolResult.status,
+              content: block.toolResult.content,
+            },
+          }),
+        }
+      }
+      return block
+    }),
+  }))
 }
 
 /**

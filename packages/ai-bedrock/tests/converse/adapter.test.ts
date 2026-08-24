@@ -3,6 +3,7 @@ import { EventType } from '@tanstack/ai'
 import { resolveDebugOption } from '@tanstack/ai/adapter-internals'
 import { BedrockConverseTextAdapter } from '../../src/adapters/converse-text'
 import type {
+  ConverseCommandInput,
   ConverseCommandOutput,
   ConverseStreamCommandInput,
   ConverseStreamOutput,
@@ -18,6 +19,7 @@ class StubAdapter extends BedrockConverseTextAdapter<'us.amazon.nova-pro-v1:0'> 
   streamEvents: Array<ConverseStreamOutput> = []
   nonStreamOutput: ConverseCommandOutput =
     {} as unknown as ConverseCommandOutput
+  capturedInput?: ConverseCommandInput
   capturedStreamInput?: ConverseStreamCommandInput
 
   protected override async sendStream(
@@ -30,7 +32,10 @@ class StubAdapter extends BedrockConverseTextAdapter<'us.amazon.nova-pro-v1:0'> 
     })()
   }
 
-  protected override async send(): Promise<ConverseCommandOutput> {
+  protected override async send(
+    input: ConverseCommandInput,
+  ): Promise<ConverseCommandOutput> {
+    this.capturedInput = input
     return this.nonStreamOutput
   }
 }
@@ -102,6 +107,96 @@ describe('BedrockConverseTextAdapter', () => {
     })
   })
 
+  it('keeps historical tool evidence as text when no tools are active', async () => {
+    const a = new StubAdapter({ apiKey: 'k' }, 'us.amazon.nova-pro-v1:0')
+    a.streamEvents = [{ messageStop: { stopReason: 'end_turn' } }]
+    for await (const _ of a.chatStream(
+      textOptions({
+        messages: [
+          { role: 'user', content: 'calculate' },
+          {
+            role: 'assistant',
+            content: null,
+            toolCalls: [
+              {
+                id: 'call-1',
+                type: 'function',
+                function: {
+                  name: 'calculate',
+                  arguments: '{"value":42}',
+                },
+              },
+            ],
+          },
+          { role: 'tool', content: '{"result":42}', toolCallId: 'call-1' },
+        ],
+        tools: [],
+      }),
+    )) {
+      // drain
+    }
+
+    expect(a.capturedStreamInput?.toolConfig).toBeUndefined()
+    const blocks = a.capturedStreamInput?.messages?.flatMap(
+      (message) => message.content ?? [],
+    )
+    expect(
+      blocks?.some(
+        (block) =>
+          block.toolUse !== undefined || block.toolResult !== undefined,
+      ),
+    ).toBe(false)
+    const text = blocks?.map((block) => block.text).join('\n')
+    expect(text).toContain('"name":"calculate"')
+    expect(text).toContain('{\\"result\\":42}')
+  })
+
+  it('keeps native historical tool blocks when tools remain active', async () => {
+    const a = new StubAdapter({ apiKey: 'k' }, 'us.amazon.nova-pro-v1:0')
+    a.streamEvents = [{ messageStop: { stopReason: 'end_turn' } }]
+    for await (const _ of a.chatStream(
+      textOptions({
+        messages: [
+          { role: 'user', content: 'calculate' },
+          {
+            role: 'assistant',
+            content: null,
+            toolCalls: [
+              {
+                id: 'call-1',
+                type: 'function',
+                function: {
+                  name: 'calculate',
+                  arguments: '{"value":42}',
+                },
+              },
+            ],
+          },
+          { role: 'tool', content: '{"result":42}', toolCallId: 'call-1' },
+        ],
+        tools: [
+          {
+            name: 'calculate',
+            description: 'Calculate a value',
+            inputSchema: {
+              type: 'object',
+              properties: { value: { type: 'number' } },
+            },
+          },
+        ],
+      }),
+    )) {
+      // drain
+    }
+
+    expect(a.capturedStreamInput?.toolConfig?.tools).toHaveLength(1)
+    const blocks = a.capturedStreamInput?.messages?.flatMap(
+      (message) => message.content ?? [],
+    )
+    expect(blocks?.some((block) => block.toolUse !== undefined)).toBe(true)
+    expect(blocks?.some((block) => block.toolResult !== undefined)).toBe(true)
+  })
+
   it('emits RUN_ERROR on an in-band Converse error event', async () => {
     const a = new StubAdapter({ apiKey: 'k' }, 'us.amazon.nova-pro-v1:0')
     a.streamEvents = [
@@ -168,6 +263,57 @@ describe('BedrockConverseTextAdapter', () => {
     })
     expect(res.data).toEqual({ n: 5 })
     expect(JSON.parse(res.rawText)).toEqual({ n: 5 })
+  })
+
+  it('keeps native tool history when structured output supplies a toolConfig', async () => {
+    const a = new StubAdapter({ apiKey: 'k' }, 'us.amazon.nova-pro-v1:0')
+    a.nonStreamOutput = {
+      output: {
+        message: {
+          role: 'assistant',
+          content: [
+            {
+              toolUse: {
+                toolUseId: 'structured',
+                name: 'structured_output',
+                input: { n: 42 },
+              },
+            },
+          ],
+        },
+      },
+    } as unknown as ConverseCommandOutput
+
+    await a.structuredOutput({
+      chatOptions: textOptions({
+        messages: [
+          { role: 'user', content: 'calculate' },
+          {
+            role: 'assistant',
+            content: null,
+            toolCalls: [
+              {
+                id: 'call-1',
+                type: 'function',
+                function: {
+                  name: 'calculate',
+                  arguments: '{"value":42}',
+                },
+              },
+            ],
+          },
+          { role: 'tool', content: '{"result":42}', toolCallId: 'call-1' },
+        ],
+      }),
+      outputSchema: { type: 'object', properties: { n: { type: 'number' } } },
+    })
+
+    expect(a.capturedInput?.toolConfig?.tools).toHaveLength(1)
+    const blocks = a.capturedInput?.messages?.flatMap(
+      (message) => message.content ?? [],
+    )
+    expect(blocks?.some((block) => block.toolUse !== undefined)).toBe(true)
+    expect(blocks?.some((block) => block.toolResult !== undefined)).toBe(true)
   })
 
   it('streams structured output through structuredOutputStream', async () => {
