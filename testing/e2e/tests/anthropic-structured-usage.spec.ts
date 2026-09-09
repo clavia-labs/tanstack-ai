@@ -39,9 +39,9 @@ test.describe('anthropic — structured-output fallback', () => {
     expect(error ?? null).toBeNull()
     expect(ok).toBe(true)
     expect(usage).toMatchObject({
-      promptTokens: 125,
+      promptTokens: 5885,
       completionTokens: 1346,
-      totalTokens: 1471,
+      totalTokens: 7231,
       promptTokensDetails: { cachedTokens: 5760 },
     })
     expect(timestamps.structuredOutputStart).toBeGreaterThanOrEqual(
