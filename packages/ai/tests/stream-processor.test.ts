@@ -5740,3 +5740,54 @@ describe('StreamProcessor', () => {
     })
   })
 })
+
+describe('reasoning signature ownership', () => {
+  it.each(['legacy', 'spec'] as const)(
+    '%s retains empty thinking and updates the named earlier step',
+    async (format) => {
+      const signature = (id: string, value: string) =>
+        format === 'legacy'
+          ? chunk(EventType.STEP_FINISHED, {
+              stepName: id,
+              stepId: id,
+              signature: value,
+            })
+          : chunk(EventType.REASONING_ENCRYPTED_VALUE, {
+              subtype: 'message',
+              entityId: id,
+              encryptedValue: value,
+            })
+      const processor = new StreamProcessor()
+      await processor.process(
+        streamOf(
+          chunk(EventType.STEP_STARTED, { stepName: 'first' }),
+          signature('first', 'initial'),
+          chunk(EventType.TEXT_MESSAGE_START, {
+            messageId: 'answer',
+            role: 'assistant',
+          }),
+          chunk(EventType.TEXT_MESSAGE_CONTENT, {
+            messageId: 'answer',
+            delta: 'Answer',
+          }),
+          chunk(EventType.STEP_STARTED, { stepName: 'second' }),
+          signature('second', 'second signature'),
+          signature('first', 'first signature'),
+        ),
+      )
+      const thinking = processor
+        .getMessages()
+        .flatMap((message) => message.parts)
+        .filter((part) => part.type === 'thinking')
+      expect(
+        thinking.map((part) => ({
+          content: part.content,
+          signature: part.signature,
+        })),
+      ).toEqual([
+        { content: '', signature: 'first signature' },
+        { content: '', signature: 'second signature' },
+      ])
+    },
+  )
+})

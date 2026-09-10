@@ -18,6 +18,7 @@ import type {
 } from '@tanstack/ai/adapters'
 import type {
   Response,
+  ResponseReasoningItem,
   ResponseCreateParams,
   ResponseFunctionCallOutputItem,
   ResponseInput,
@@ -890,7 +891,10 @@ export abstract class OpenAIBaseResponsesTextAdapter<
     let reasoningMessageId: string | undefined
     let reasoningItemId: string | undefined
     let reasoningEncryptedContent: string | undefined
-    let closedReasoningStepId: string | undefined
+    const closedReasoningItems = new Map<
+      string,
+      { stepId: string; signature: string | undefined }
+    >()
     let hasClosedReasoning = false
     // Track whether we've emitted a terminal RUN_FINISHED so the
     // end-of-stream fallback below knows to synthesise one when the upstream
@@ -960,7 +964,8 @@ export abstract class OpenAIBaseResponsesTextAdapter<
         timestamp,
       }
       if (stepId) {
-        closedReasoningStepId = stepId
+        if (reasoningItemId)
+          closedReasoningItems.set(reasoningItemId, { stepId, signature })
         yield {
           type: EventType.STEP_FINISHED,
           stepName: stepId,
@@ -977,6 +982,7 @@ export abstract class OpenAIBaseResponsesTextAdapter<
       stepId = null
       hasClosedReasoning = false
       accumulatedReasoning = ''
+      hasStreamedReasoningDeltas = false
     }
 
     const emitReasoningDelta = function* (
@@ -994,6 +1000,40 @@ export abstract class OpenAIBaseResponsesTextAdapter<
         model: emitModel(),
         timestamp: Date.now(),
       }
+    }
+
+    const finishReasoningItem = function* (
+      item: ResponseReasoningItem,
+    ): Generator<AdapterYieldChunk> {
+      const closed = closedReasoningItems.get(item.id)
+      if (closed) {
+        const signature = packResponsesReasoningSignature(
+          item.id,
+          item.encrypted_content ?? undefined,
+        )
+        if (item.encrypted_content && signature !== closed.signature) {
+          closed.signature = signature
+          yield {
+            type: EventType.STEP_FINISHED,
+            stepName: closed.stepId,
+            stepId: closed.stepId,
+            model: emitModel(),
+            timestamp: Date.now(),
+            content: '',
+            signature,
+          }
+        }
+        return
+      }
+      if (reasoningItemId && reasoningItemId !== item.id)
+        yield* closeReasoning()
+      captureReasoningItem(item)
+      yield* openReasoning()
+      if (!hasStreamedReasoningDeltas) {
+        for (const part of item.summary ?? [])
+          yield* emitReasoningDelta(part.text)
+      }
+      yield* closeReasoning()
     }
 
     try {
@@ -1297,6 +1337,8 @@ export abstract class OpenAIBaseResponsesTextAdapter<
         if (chunk.type === 'response.output_item.added') {
           const item = chunk.item
           if (item.type === 'reasoning') {
+            if (reasoningItemId && reasoningItemId !== item.id)
+              yield* closeReasoning()
             captureReasoningItem(item)
             yield* openReasoning()
           }
@@ -1465,8 +1507,7 @@ export abstract class OpenAIBaseResponsesTextAdapter<
         if (chunk.type === 'response.output_item.done') {
           const item = chunk.item
           if (item.type === 'reasoning') {
-            captureReasoningItem(item)
-            yield* openReasoning()
+            yield* finishReasoningItem(item)
           }
           if (item.type === 'function_call' && item.id) {
             const metadata = toolCallMetadata.get(item.id) ?? {
@@ -1582,36 +1623,8 @@ export abstract class OpenAIBaseResponsesTextAdapter<
             }
           }
 
-          if (Array.isArray(chunk.response.output)) {
-            for (const item of chunk.response.output) {
-              captureReasoningItem(item)
-            }
-          }
-          // output_text already closed the streamed reasoning item. A second
-          // openReasoning() would emit an empty thinking part. Attach the
-          // completed item's id/blob to that step instead. Open only when
-          // this turn never started reasoning (encrypted-only output).
-          if (
-            !reasoningMessageId &&
-            (reasoningItemId || reasoningEncryptedContent)
-          ) {
-            const signature = packResponsesReasoningSignature(
-              reasoningItemId,
-              reasoningEncryptedContent,
-            )
-            if (closedReasoningStepId && signature) {
-              yield {
-                type: EventType.STEP_FINISHED,
-                stepName: closedReasoningStepId,
-                stepId: closedReasoningStepId,
-                model: emitModel(),
-                timestamp: Date.now(),
-                content: '',
-                signature,
-              }
-            } else if (!closedReasoningStepId) {
-              yield* openReasoning()
-            }
+          for (const item of chunk.response.output) {
+            if (item.type === 'reasoning') yield* finishReasoningItem(item)
           }
 
           // Final backstop for function_call lifecycle: if a function_call

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest'
 import { OpenAIBaseResponsesTextAdapter } from '../src/adapters/responses-text'
 import type OpenAI from 'openai'
-import { EventType, chat } from '@tanstack/ai'
+import { EventType, chat, StreamProcessor } from '@tanstack/ai'
 import type { AdapterYieldChunk, Tool } from '@tanstack/ai'
 import { resolveDebugOption } from '@tanstack/ai/adapter-internals'
 
@@ -3539,4 +3539,90 @@ describe('OpenAIBaseResponsesTextAdapter', () => {
       expect(adapter.model).toBe('my-model')
     })
   })
+})
+
+describe('reasoning replay through StreamProcessor', () => {
+  it.each([
+    ['multiple summaries', 2, true],
+    ['encrypted only', 1, false],
+  ] as const)(
+    '%s retains every item after serialization',
+    async (_label, count, summary) => {
+      const items = Array.from({ length: count }, (_, index) => ({
+        type: 'reasoning',
+        id: `rs_${index}`,
+        encrypted_content: `encrypted-${index}`,
+        summary: summary
+          ? [{ type: 'summary_text', text: `Reason ${index}` }]
+          : [],
+      }))
+      const call = {
+        type: 'function_call',
+        id: 'fc_1',
+        call_id: 'call_1',
+        name: 'lookup_weather',
+        arguments: '{}',
+      }
+      const events: Array<Record<string, unknown>> = items.flatMap(
+        (item, index) => [
+          {
+            type: 'response.output_item.added',
+            output_index: index,
+            item: { type: 'reasoning', id: item.id },
+          },
+          ...(summary
+            ? [
+                {
+                  type: 'response.reasoning_summary_text.delta',
+                  output_index: index,
+                  item_id: item.id,
+                  summary_index: 0,
+                  delta: `Reason ${index}`,
+                },
+              ]
+            : []),
+          { type: 'response.output_item.done', output_index: index, item },
+        ],
+      )
+      events.push(
+        { type: 'response.output_item.added', output_index: count, item: call },
+        {
+          type: 'response.function_call_arguments.done',
+          output_index: count,
+          item_id: call.id,
+          arguments: '{}',
+        },
+        {
+          type: 'response.completed',
+          response: {
+            id: 'response',
+            model: 'test-model',
+            status: 'completed',
+            output: [...items, call],
+          },
+        },
+      )
+      setupMockResponsesClient(events)
+      const adapter = new TestResponsesAdapter(testConfig, 'test-model')
+      const processor = new StreamProcessor()
+      await processor.process(
+        adapter.chatStream({
+          model: 'test-model',
+          messages: [{ role: 'user', content: 'Check' }],
+          logger: testLogger,
+        }),
+      )
+      for await (const _chunk of adapter.chatStream({
+        model: 'test-model',
+        messages: JSON.parse(JSON.stringify(processor.toModelMessages())),
+        logger: testLogger,
+      })) {
+      }
+      const body: { input: Array<{ type: string }> } =
+        mockResponsesCreate.mock.calls[1]![0]
+      expect(body.input.filter((item) => item.type === 'reasoning')).toEqual(
+        items,
+      )
+    },
+  )
 })
