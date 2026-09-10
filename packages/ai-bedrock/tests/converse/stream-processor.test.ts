@@ -195,7 +195,7 @@ describe('processConverseStream', () => {
     )
     const finished = events.find((e) => e.type === EventType.RUN_FINISHED)
     expect((finished as { usage?: unknown }).usage).toEqual({
-      promptTokens: 3,
+      promptTokens: 8412,
       completionTokens: 4,
       totalTokens: 8416,
       // Zero is a real value here. The checkpoint was served, not missing.

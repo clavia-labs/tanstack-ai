@@ -6,20 +6,21 @@ import type { TokenUsage as ConverseTokenUsage } from '@aws-sdk/client-bedrock-r
  * Build normalized {@link TokenUsage} from a Converse `usage` object.
  *
  * `inputTokens` is the uncached part of the input only. Cache reads and writes
- * come as separate fields and go on `promptTokensDetails`, same as the Anthropic
- * and OpenAI builders. Zero is kept, unlike those builders. Bedrock leaves the
+ * are included in `promptTokens` and retained on `promptTokensDetails`.
+ * The provider total is already inclusive. Zero is kept. Bedrock leaves the
  * fields out when no checkpoint applied and sends 0 when one did (a served
  * checkpoint writes 0), so absent and zero are different results.
  */
 export function buildConverseUsage(usage: ConverseTokenUsage): TokenUsage {
+  const cachedTokens = usage.cacheReadInputTokens
+  const cacheWriteTokens = usage.cacheWriteInputTokens
   const result = buildBaseUsage({
-    promptTokens: usage.inputTokens ?? 0,
+    promptTokens:
+      (usage.inputTokens ?? 0) + (cachedTokens ?? 0) + (cacheWriteTokens ?? 0),
     completionTokens: usage.outputTokens ?? 0,
     totalTokens: usage.totalTokens ?? 0,
   })
 
-  const cachedTokens = usage.cacheReadInputTokens
-  const cacheWriteTokens = usage.cacheWriteInputTokens
   const promptTokensDetails = {
     ...(cachedTokens !== undefined ? { cachedTokens } : {}),
     ...(cacheWriteTokens !== undefined ? { cacheWriteTokens } : {}),

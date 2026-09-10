@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { chat } from '@tanstack/ai'
+import { buildAnthropicUsage } from '../src/usage'
 import { AnthropicTextAdapter } from '../src/adapters/text'
 import type { AdapterYieldChunk } from '@tanstack/ai'
 
@@ -163,6 +164,10 @@ describe('Anthropic usage extraction', () => {
 
     const doneChunk = chunks.find((c) => c.type === 'RUN_FINISHED')
     expect(doneChunk).toBeDefined()
+    expect(doneChunk?.usage).toMatchObject({
+      promptTokens: 175,
+      totalTokens: 225,
+    })
     expect(doneChunk?.usage?.promptTokensDetails).toEqual({
       cacheWriteTokens: 50,
       cachedTokens: 25,
@@ -344,5 +349,29 @@ describe('Anthropic usage extraction', () => {
     expect(doneChunk?.usage?.completionTokens).toBe(0)
     expect(doneChunk?.usage?.totalTokens).toBe(100)
     expect(Number.isNaN(doneChunk?.usage?.totalTokens)).toBe(false)
+  })
+})
+
+describe('inclusive Anthropic usage', () => {
+  it.each([
+    { read: 0, write: 1776 },
+    { read: 1776, write: 0 },
+    { read: 1000, write: 776 },
+    { read: 0, write: 0 },
+  ])('includes cache reads $read and writes $write once', ({ read, write }) => {
+    expect(
+      buildAnthropicUsage({
+        input_tokens: 4,
+        output_tokens: 165,
+        cache_read_input_tokens: read,
+        cache_creation_input_tokens: write,
+        iterations: null,
+        server_tool_use: null,
+      }),
+    ).toMatchObject({
+      promptTokens: 4 + read + write,
+      completionTokens: 165,
+      totalTokens: 169 + read + write,
+    })
   })
 })

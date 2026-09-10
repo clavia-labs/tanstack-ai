@@ -617,7 +617,7 @@ The `usage` object:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `promptTokens` | `number` | Input tokens |
+| `promptTokens` | `number` | Input tokens, including cache reads and writes for Anthropic and Bedrock Converse |
 | `completionTokens` | `number` | Output tokens |
 | `totalTokens` | `number` | Total tokens |
 

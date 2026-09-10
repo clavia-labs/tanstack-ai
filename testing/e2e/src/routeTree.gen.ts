@@ -92,6 +92,7 @@ import { Route as ApiCompactionWireRouteImport } from './routes/api.compaction-w
 import { Route as ApiChatRouteImport } from './routes/api.chat'
 import { Route as ApiByteplusSeedance1080pWireRouteImport } from './routes/api.byteplus-seedance-1080p-wire'
 import { Route as ApiByokChatRouteImport } from './routes/api.byok-chat'
+import { Route as ApiBedrockCacheUsageRouteImport } from './routes/api.bedrock-cache-usage'
 import { Route as ApiAudioRouteImport } from './routes/api.audio'
 import { Route as ApiArktypeToolWireRouteImport } from './routes/api.arktype-tool-wire'
 import { Route as ApiAnthropicStructuredUsageRouteImport } from './routes/api.anthropic-structured-usage'
@@ -537,6 +538,11 @@ const ApiByokChatRoute = ApiByokChatRouteImport.update({
   path: '/api/byok-chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiBedrockCacheUsageRoute = ApiBedrockCacheUsageRouteImport.update({
+  id: '/api/bedrock-cache-usage',
+  path: '/api/bedrock-cache-usage',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAudioRoute = ApiAudioRouteImport.update({
   id: '/api/audio',
   path: '/api/audio',
@@ -625,6 +631,7 @@ export interface FileRoutesByFullPath {
   '/api/anthropic-structured-usage': typeof ApiAnthropicStructuredUsageRoute
   '/api/arktype-tool-wire': typeof ApiArktypeToolWireRoute
   '/api/audio': typeof ApiAudioRouteWithChildren
+  '/api/bedrock-cache-usage': typeof ApiBedrockCacheUsageRoute
   '/api/byok-chat': typeof ApiByokChatRoute
   '/api/byteplus-seedance-1080p-wire': typeof ApiByteplusSeedance1080pWireRoute
   '/api/chat': typeof ApiChatRoute
@@ -721,6 +728,7 @@ export interface FileRoutesByTo {
   '/api/anthropic-structured-usage': typeof ApiAnthropicStructuredUsageRoute
   '/api/arktype-tool-wire': typeof ApiArktypeToolWireRoute
   '/api/audio': typeof ApiAudioRouteWithChildren
+  '/api/bedrock-cache-usage': typeof ApiBedrockCacheUsageRoute
   '/api/byok-chat': typeof ApiByokChatRoute
   '/api/byteplus-seedance-1080p-wire': typeof ApiByteplusSeedance1080pWireRoute
   '/api/chat': typeof ApiChatRoute
@@ -818,6 +826,7 @@ export interface FileRoutesById {
   '/api/anthropic-structured-usage': typeof ApiAnthropicStructuredUsageRoute
   '/api/arktype-tool-wire': typeof ApiArktypeToolWireRoute
   '/api/audio': typeof ApiAudioRouteWithChildren
+  '/api/bedrock-cache-usage': typeof ApiBedrockCacheUsageRoute
   '/api/byok-chat': typeof ApiByokChatRoute
   '/api/byteplus-seedance-1080p-wire': typeof ApiByteplusSeedance1080pWireRoute
   '/api/chat': typeof ApiChatRoute
@@ -916,6 +925,7 @@ export interface FileRouteTypes {
     | '/api/anthropic-structured-usage'
     | '/api/arktype-tool-wire'
     | '/api/audio'
+    | '/api/bedrock-cache-usage'
     | '/api/byok-chat'
     | '/api/byteplus-seedance-1080p-wire'
     | '/api/chat'
@@ -1012,6 +1022,7 @@ export interface FileRouteTypes {
     | '/api/anthropic-structured-usage'
     | '/api/arktype-tool-wire'
     | '/api/audio'
+    | '/api/bedrock-cache-usage'
     | '/api/byok-chat'
     | '/api/byteplus-seedance-1080p-wire'
     | '/api/chat'
@@ -1108,6 +1119,7 @@ export interface FileRouteTypes {
     | '/api/anthropic-structured-usage'
     | '/api/arktype-tool-wire'
     | '/api/audio'
+    | '/api/bedrock-cache-usage'
     | '/api/byok-chat'
     | '/api/byteplus-seedance-1080p-wire'
     | '/api/chat'
@@ -1205,6 +1217,7 @@ export interface RootRouteChildren {
   ApiAnthropicStructuredUsageRoute: typeof ApiAnthropicStructuredUsageRoute
   ApiArktypeToolWireRoute: typeof ApiArktypeToolWireRoute
   ApiAudioRoute: typeof ApiAudioRouteWithChildren
+  ApiBedrockCacheUsageRoute: typeof ApiBedrockCacheUsageRoute
   ApiByokChatRoute: typeof ApiByokChatRoute
   ApiByteplusSeedance1080pWireRoute: typeof ApiByteplusSeedance1080pWireRoute
   ApiChatRoute: typeof ApiChatRoute
@@ -1849,6 +1862,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiByokChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/bedrock-cache-usage': {
+      id: '/api/bedrock-cache-usage'
+      path: '/api/bedrock-cache-usage'
+      fullPath: '/api/bedrock-cache-usage'
+      preLoaderRoute: typeof ApiBedrockCacheUsageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/audio': {
       id: '/api/audio'
       path: '/api/audio'
@@ -2018,6 +2038,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAnthropicStructuredUsageRoute: ApiAnthropicStructuredUsageRoute,
   ApiArktypeToolWireRoute: ApiArktypeToolWireRoute,
   ApiAudioRoute: ApiAudioRouteWithChildren,
+  ApiBedrockCacheUsageRoute: ApiBedrockCacheUsageRoute,
   ApiByokChatRoute: ApiByokChatRoute,
   ApiByteplusSeedance1080pWireRoute: ApiByteplusSeedance1080pWireRoute,
   ApiChatRoute: ApiChatRoute,

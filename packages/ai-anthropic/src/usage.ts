@@ -34,7 +34,10 @@ export function buildAnthropicUsage(
 ): TokenUsage<AnthropicProviderUsageDetails> | undefined {
   if (!usage) return undefined
 
-  const inputTokens = usage.input_tokens ?? 0
+  const cacheCreation = usage.cache_creation_input_tokens
+  const cacheRead = usage.cache_read_input_tokens
+  const inputTokens =
+    (usage.input_tokens ?? 0) + (cacheCreation ?? 0) + (cacheRead ?? 0)
   // `|| 0` (rather than `?? 0`) matches the sibling builders and stays defensive
   // against a runtime-absent count without tripping no-unnecessary-condition
   // (the SDK types output_tokens as a required number).
@@ -49,9 +52,6 @@ export function buildAnthropicUsage(
   // Add prompt token details for cache tokens. Only attach the details object
   // when at least one field is present so we don't emit an empty `{}` (every
   // other adapter guards with the same Object.keys check).
-  const cacheCreation = usage.cache_creation_input_tokens
-  const cacheRead = usage.cache_read_input_tokens
-
   const promptTokensDetails = {
     ...(cacheCreation ? { cacheWriteTokens: cacheCreation } : {}),
     ...(cacheRead ? { cachedTokens: cacheRead } : {}),
