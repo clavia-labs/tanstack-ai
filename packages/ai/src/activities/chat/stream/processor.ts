@@ -1851,6 +1851,25 @@ export class StreamProcessor {
     this.pendingThinkingStepId = stepId
   }
 
+  private thinkingStateFor(stepId?: string) {
+    // ponytail: scan retained states for late signatures; index steps if this becomes hot.
+    const owner = stepId
+      ? [...this.messageStates.values()].find((state) =>
+          state.thinkingSteps.has(stepId),
+        )
+      : undefined
+    const target = owner
+      ? { messageId: owner.id, state: owner }
+      : this.ensureAssistantMessage(
+          this.getActiveAssistantMessageId() ?? undefined,
+        )
+    if (!owner) this.consumePendingThinkingStep(target.state)
+    return {
+      ...target,
+      stepId: owner ? stepId : (target.state.currentThinkingStepId ?? stepId),
+    }
+  }
+
   /**
    * Handle STEP_FINISHED event.
    *
@@ -1866,10 +1885,7 @@ export class StreamProcessor {
     const signature = extra.signature
     if (!signature) return
 
-    const { messageId, state } = this.ensureAssistantMessage(
-      this.getActiveAssistantMessageId() ?? undefined,
-    )
-    const stepId = state.currentThinkingStepId ?? extra.stepId
+    const { messageId, state, stepId } = this.thinkingStateFor(extra.stepId)
     if (!stepId) return
     const thinking = state.thinkingSteps.get(stepId)
     if (thinking === undefined) return
@@ -1941,10 +1957,12 @@ export class StreamProcessor {
       return
     }
 
-    const { messageId, state } = this.ensureAssistantMessage(
-      this.getActiveAssistantMessageId() ?? undefined,
-    )
-    const stepId = state.currentThinkingStepId ?? chunk.entityId
+    const {
+      messageId,
+      state,
+      stepId: existingStepId,
+    } = this.thinkingStateFor(chunk.entityId)
+    const stepId = existingStepId ?? chunk.entityId
     state.thinkingStepSignatures.set(stepId, encryptedValue)
     const content = state.thinkingSteps.get(stepId) ?? ''
     if (!state.thinkingSteps.has(stepId)) {

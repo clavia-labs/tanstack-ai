@@ -274,6 +274,9 @@ function asSdkAnthropicMessagesClient(
 // Adapter Implementation
 // ===========================
 
+// Redacted data uses the opaque signature slot and never becomes display text.
+const REDACTED_THINKING_PREFIX = 'anthropic:redacted:'
+
 /**
  * Anthropic Text (Chat) Adapter
  *
@@ -887,6 +890,13 @@ export class AnthropicTextAdapter<
 
     for (const thinking of thinkingParts) {
       if (!thinking.signature) continue
+      if (thinking.signature.startsWith(REDACTED_THINKING_PREFIX)) {
+        contentBlocks.push({
+          type: 'redacted_thinking',
+          data: thinking.signature.slice(REDACTED_THINKING_PREFIX.length),
+        })
+        continue
+      }
       const block: ThinkingBlockParam = {
         type: 'thinking',
         thinking: thinking.content,
@@ -1118,9 +1128,16 @@ export class AnthropicTextAdapter<
               // Text after the server tool starts a fresh message segment.
               hasEmittedTextMessageStart = false
             }
-          } else if (event.content_block.type === 'thinking') {
+          } else if (
+            event.content_block.type === 'thinking' ||
+            event.content_block.type === 'redacted_thinking'
+          ) {
             accumulatedThinking = ''
-            accumulatedSignature = ''
+            accumulatedSignature =
+              event.content_block.type === 'redacted_thinking'
+                ? REDACTED_THINKING_PREFIX + event.content_block.data
+                : ''
+            hasClosedReasoning = false
             // Emit REASONING and STEP_STARTED for thinking
             stepId = genId()
             reasoningMessageId = genId()
@@ -1266,7 +1283,10 @@ export class AnthropicTextAdapter<
             }
           }
         } else if (event.type === 'content_block_stop') {
-          if (currentBlockType === 'thinking') {
+          if (
+            currentBlockType === 'thinking' ||
+            currentBlockType === 'redacted_thinking'
+          ) {
             // Emit signature so it can be replayed in multi-turn context
             if (accumulatedSignature && stepId) {
               yield {
@@ -1279,6 +1299,22 @@ export class AnthropicTextAdapter<
                 content: accumulatedThinking,
                 signature: accumulatedSignature,
               }
+            }
+            if (reasoningMessageId) {
+              yield {
+                type: EventType.REASONING_MESSAGE_END,
+                messageId: reasoningMessageId,
+                model,
+                timestamp: Date.now(),
+              }
+              yield {
+                type: EventType.REASONING_END,
+                messageId: reasoningMessageId,
+                model,
+                timestamp: Date.now(),
+              }
+              reasoningMessageId = null
+              stepId = null
             }
           } else if (currentBlockType === 'tool_use') {
             const existing = toolCallsMap.get(currentToolIndex)

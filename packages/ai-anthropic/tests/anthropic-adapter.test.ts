@@ -12,6 +12,7 @@ import type { AnthropicTextProviderOptions } from '../src/adapters/text'
 import type { AnthropicDocumentMetadata } from '../src/message-types'
 import { ANTHROPIC_MAX_NONSTREAMING_TOKENS } from '../src/model-meta'
 import { z } from 'zod'
+import { createSilentLogger } from './utils/logger'
 
 const mocks = vi.hoisted(() => {
   const betaMessagesCreate = vi.fn()
@@ -2141,4 +2142,74 @@ describe('Anthropic adapter error handling', () => {
       expect(runError.code).toBe('429')
     }
   })
+})
+
+it('round-trips redacted thinking without exposing its data as text', async () => {
+  const blocks = [
+    { type: 'thinking', thinking: 'Check the weather', signature: 'signed-1' },
+    { type: 'redacted_thinking', data: 'redacted-opaque-data' },
+    { type: 'tool_use', id: 'call_1', name: 'lookup_weather', input: {} },
+  ]
+  const events: Array<Record<string, unknown>> = [
+    {
+      type: 'content_block_start',
+      index: 0,
+      content_block: { type: 'thinking', thinking: '', signature: '' },
+    },
+    {
+      type: 'content_block_delta',
+      index: 0,
+      delta: { type: 'thinking_delta', thinking: 'Check the weather' },
+    },
+    {
+      type: 'content_block_delta',
+      index: 0,
+      delta: { type: 'signature_delta', signature: 'signed-1' },
+    },
+    { type: 'content_block_stop', index: 0 },
+    { type: 'content_block_start', index: 1, content_block: blocks[1] },
+    { type: 'content_block_stop', index: 1 },
+    { type: 'content_block_start', index: 2, content_block: blocks[2] },
+    { type: 'content_block_stop', index: 2 },
+    {
+      type: 'message_delta',
+      delta: { stop_reason: 'tool_use' },
+      usage: { output_tokens: 10 },
+    },
+    { type: 'message_stop' },
+  ]
+  mocks.betaMessagesCreate
+    .mockResolvedValueOnce(
+      (async function* () {
+        yield* events
+      })(),
+    )
+    .mockResolvedValueOnce(createTextStream('Done'))
+  const adapter = createAdapter('claude-opus-4-1')
+  const processor = new StreamProcessor()
+  await processor.process(
+    adapter.chatStream({
+      model: 'claude-opus-4-1',
+      messages: [{ role: 'user', content: 'Check' }],
+      logger: createSilentLogger(),
+    }),
+  )
+  expect(
+    processor
+      .getMessages()
+      .flatMap((message) => message.parts)
+      .filter((part) => part.type === 'thinking')
+      .map((part) => part.content),
+  ).not.toContain('redacted-opaque-data')
+  for await (const _chunk of adapter.chatStream({
+    model: 'claude-opus-4-1',
+    messages: JSON.parse(JSON.stringify(processor.toModelMessages())),
+    logger: createSilentLogger(),
+  })) {
+  }
+  const body: { messages: Array<{ role: string; content: unknown }> } =
+    mocks.betaMessagesCreate.mock.calls.at(-1)![0]
+  expect(
+    body.messages.find((message) => message.role === 'assistant')?.content,
+  ).toEqual(blocks)
 })
