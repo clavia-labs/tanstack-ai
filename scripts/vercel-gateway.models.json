@@ -174,7 +174,7 @@
     "type": "language",
     "zdr": "all",
     "no_training": "all",
-    "tags": ["reasoning", "tool-use"],
+    "tags": ["reasoning", "tool-use", "explicit-caching"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text"],
@@ -225,10 +225,10 @@
           "min": 128000
         }
       ],
-      "input_cache_read": "0.00000026",
+      "input_cache_read": "0.00000013",
       "input_cache_read_tiers": [
         {
-          "cost": "0.00000026",
+          "cost": "0.00000013",
           "min": 0,
           "max": 128000
         },
@@ -552,8 +552,8 @@
     "context_window": 32768,
     "max_tokens": 32768,
     "type": "embedding",
-    "zdr": "some",
-    "no_training": "some",
+    "zdr": "all",
+    "no_training": "all",
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text"],
@@ -596,16 +596,15 @@
     "context_window": 32768,
     "max_tokens": 32768,
     "type": "embedding",
-    "zdr": "some",
-    "no_training": "some",
+    "zdr": "all",
+    "no_training": "all",
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text"],
       "output": ["text"]
     },
     "pricing": {
-      "input": "0.00000005",
-      "varies_by_provider": true
+      "input": "0.00000001"
     }
   },
   {
@@ -872,8 +871,8 @@
     "owned_by": "alibaba",
     "name": "Qwen3 Next 80B A3B Instruct",
     "description": "A new generation of open-source, non-thinking mode model powered by Qwen3. This version demonstrates superior Chinese text understanding, augmented logical reasoning, and enhanced capabilities in text generation tasks over the previous iteration (Qwen3-235B-A22B-Instruct-2507).",
-    "context_window": 131072,
-    "max_tokens": 32768,
+    "context_window": 262114,
+    "max_tokens": 262114,
     "type": "language",
     "zdr": "some",
     "no_training": "all",
@@ -905,9 +904,9 @@
     "released": 1757548800,
     "owned_by": "alibaba",
     "name": "Qwen3 Next 80B A3B Thinking",
-    "description": "A new generation of Qwen3-based open-source thinking mode models. This version offers improved instruction following and streamlined summary responses over the previous iteration (Qwen3-235B-A22B-Thinking-2507).",
-    "context_window": 131072,
-    "max_tokens": 32768,
+    "description": "Qwen3-Next uses a highly sparse MoE design: 80B total parameters, but only ~3B activated per inference step. Experiments show that, with global load balancing, increasing total expert parameters while keeping activated experts fixed steadily reduces training loss.Compared to Qwen3’s MoE (128 total experts, 8 routed), Qwen3-Next expands to 512 total experts, combining 10 routed experts + 1 shared expert — maximizing resource usage without hurting performance. The Qwen3-Next-80B-A3B-Thinking excels at complex reasoning tasks — outperforming higher-cost models like Qwen3-30B-A3B-Thinking-2507 and Qwen3-32B-Thinking, outpeforming the closed-source Gemini-2.5-Flash-Thinking on multiple benchmarks, and approaching the performance of our top-tier model Qwen3-235B-A22B-Thinking-2507.",
+    "context_window": 262144,
+    "max_tokens": 262144,
     "type": "language",
     "zdr": "all",
     "no_training": "all",
@@ -1063,7 +1062,13 @@
     "type": "language",
     "zdr": "all",
     "no_training": "all",
-    "tags": ["vision", "file-input", "reasoning", "tool-use"],
+    "tags": [
+      "vision",
+      "file-input",
+      "reasoning",
+      "tool-use",
+      "explicit-caching"
+    ],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text", "image", "pdf"],
@@ -1092,7 +1097,7 @@
     "pricing": {
       "input": "0.0000001",
       "output": "0.0000004",
-      "input_cache_read": "0.000000001",
+      "input_cache_read": "0.00000001",
       "input_cache_write": "0.000000125"
     }
   },
@@ -1109,7 +1114,13 @@
     "type": "language",
     "zdr": "all",
     "no_training": "all",
-    "tags": ["vision", "file-input", "reasoning", "tool-use"],
+    "tags": [
+      "vision",
+      "file-input",
+      "reasoning",
+      "tool-use",
+      "explicit-caching"
+    ],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text", "image", "pdf"],
@@ -1145,19 +1156,19 @@
           "max": 256001
         },
         {
-          "cost": "0.0000012",
+          "cost": "0.0000005",
           "min": 256001
         }
       ],
-      "output": "0.0000024",
+      "output": "0.0000025",
       "output_tiers": [
         {
-          "cost": "0.0000024",
+          "cost": "0.0000025",
           "min": 0,
           "max": 256001
         },
         {
-          "cost": "0.0000072",
+          "cost": "0.000003",
           "min": 256001
         }
       ],
@@ -1169,7 +1180,7 @@
           "max": 256001
         },
         {
-          "cost": "0.00000012",
+          "cost": "0.00000005",
           "min": 256001
         }
       ],
@@ -1181,7 +1192,7 @@
           "max": 256001
         },
         {
-          "cost": "0.0000015",
+          "cost": "0.000000625",
           "min": 256001
         }
       ]
@@ -1244,7 +1255,13 @@
     "type": "language",
     "zdr": "all",
     "no_training": "all",
-    "tags": ["reasoning", "tool-use", "vision", "file-input"],
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "vision",
+      "file-input",
+      "explicit-caching"
+    ],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text", "image", "pdf"],
@@ -1296,10 +1313,10 @@
           "min": 256000
         }
       ],
-      "input_cache_read": "0.0000001",
+      "input_cache_read": "0.00000005",
       "input_cache_read_tiers": [
         {
-          "cost": "0.0000001",
+          "cost": "0.00000005",
           "min": 0,
           "max": 256000
         },
@@ -1340,7 +1357,8 @@
       "tool-use",
       "implicit-caching",
       "file-input",
-      "vision"
+      "vision",
+      "explicit-caching"
     ],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
@@ -1441,7 +1459,7 @@
     "type": "language",
     "zdr": "all",
     "no_training": "all",
-    "tags": ["implicit-caching", "reasoning", "tool-use"],
+    "tags": ["implicit-caching", "reasoning", "tool-use", "explicit-caching"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text"],
@@ -1492,7 +1510,8 @@
       "tool-use",
       "implicit-caching",
       "file-input",
-      "vision"
+      "vision",
+      "explicit-caching"
     ],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
@@ -1632,7 +1651,8 @@
       "vision",
       "implicit-caching",
       "video-input",
-      "file-input"
+      "file-input",
+      "explicit-caching"
     ],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
@@ -1681,7 +1701,8 @@
       "tool-use",
       "implicit-caching",
       "file-input",
-      "vision"
+      "vision",
+      "explicit-caching"
     ],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
@@ -1707,51 +1728,10 @@
       }
     ],
     "pricing": {
-      "input": "0.00000016",
+      "input": "0.00000015",
       "output": "0.00000047",
       "input_cache_read": "0.000000016",
       "input_cache_write": "0.0000002"
-    }
-  },
-  {
-    "id": "alibaba/qwen3.8-flash-next",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1787702400,
-    "owned_by": "alibaba",
-    "name": "Qwen 3.8 Flash Next",
-    "description": "Qwen3.8-Flash-Next is Qwen’s experimental open-weight multimodal language model, pairing 125B parameters with just 6B activated for efficient reasoning and generation. With native 262K-token context extensible to 1M, vision support, and an architecture optimized for lower long-context latency, it is built for demanding agentic coding, tool use, visual reasoning, and multimodal automation.",
-    "context_window": 1048576,
-    "max_tokens": 1048576,
-    "type": "language",
-    "zdr": "none",
-    "no_training": "none",
-    "tags": ["reasoning", "tool-use", "implicit-caching", "vision"],
-    "supported_specifications": ["v2", "v3", "v4"],
-    "modalities": {
-      "input": ["text", "image"],
-      "output": ["text"]
-    },
-    "supported_parameters": [
-      "max_tokens",
-      "temperature",
-      "stop",
-      "tools",
-      "tool_choice",
-      "reasoning",
-      "include_reasoning"
-    ],
-    "temperature": true,
-    "reasoning_options": [
-      {
-        "type": "effort",
-        "values": ["low", "medium", "xhigh"]
-      }
-    ],
-    "pricing": {
-      "input": "0.00000012",
-      "output": "0.0000004",
-      "input_cache_read": "0.00000001"
     }
   },
   {
@@ -1762,12 +1742,18 @@
     "owned_by": "alibaba",
     "name": "Qwen 3.8 Max",
     "description": "Qwen 3.8 Max is a 2.4-trillion-parameter MoE model delivering a comprehensive leap in coding and professional work. Autonomously codes and delivers complete projects spanning 10+ days. Handles hundreds of specialized tasks across legal, financial, design, and other professional domains, producing production-grade results end-to-end in a single conversation. Native visual understanding runs through the full cycle of planning, execution, and verification, enabling deep semantic analysis of ultra-long documents and extended video content. In long-horizon tasks, plans autonomously, iterates through closed feedback loops, and continuously evolves.",
-    "context_window": 1000000,
+    "context_window": 262144,
     "max_tokens": 128000,
     "type": "language",
     "zdr": "all",
     "no_training": "all",
-    "tags": ["reasoning", "tool-use", "implicit-caching", "vision"],
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "vision",
+      "explicit-caching"
+    ],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text", "image"],
@@ -1797,8 +1783,7 @@
     "pricing": {
       "input": "0.000002",
       "output": "0.000006",
-      "input_cache_read": "0.00000025",
-      "input_cache_write": "0.0000025"
+      "input_cache_read": "0.00000025"
     }
   },
   {
@@ -1819,7 +1804,8 @@
       "tool-use",
       "vision",
       "file-input",
-      "implicit-caching"
+      "implicit-caching",
+      "explicit-caching"
     ],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
@@ -1841,6 +1827,49 @@
       "output": "0.000006",
       "input_cache_read": "0.00000025",
       "input_cache_write": "0.0000025"
+    }
+  },
+  {
+    "id": "alibaba/qwen3.8-omni-flash",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1789603200,
+    "owned_by": "alibaba",
+    "name": "Qwen 3.8 Omni Flash",
+    "description": "Qwen3.8-Omni-Flash is Alibaba’s native multimodal model for understanding text, images, audio, and video and generating text. Built on Qwen3.8-Flash-Next, it supports a 1M-token context window, reasoning, and tool calling for coding, knowledge work, and multimedia analysis.",
+    "context_window": 1000000,
+    "max_tokens": 131072,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "implicit-caching",
+      "reasoning",
+      "structured-output",
+      "tool-use",
+      "vision"
+    ],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "pricing": {
+      "input": "0.00000015",
+      "output": "0.00000047",
+      "input_cache_read": "0.000000016"
     }
   },
   {
@@ -4356,6 +4385,49 @@
     }
   },
   {
+    "id": "bytedance/seed-2.1-turbo",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1782172800,
+    "owned_by": "bytedance",
+    "name": "Seed 2.1 Turbo",
+    "description": "Seed 2.1 Turbo is ByteDance’s multimodal language model supporting text, image, and video inputs with text output. It offers a 262,144-token context window, reasoning, function calling, and structured JSON output.",
+    "context_window": 262144,
+    "max_tokens": 262144,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "all",
+    "tags": [
+      "reasoning",
+      "structured-output",
+      "tool-use",
+      "video-input",
+      "vision"
+    ],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text", "image", "video"],
+      "output": ["text"]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "pricing": {
+      "input": "0.0000005",
+      "output": "0.0000025",
+      "input_cache_read": "0.0000001"
+    }
+  },
+  {
     "id": "bytedance/seedance-2.0",
     "object": "model",
     "created": 1755815280,
@@ -5295,12 +5367,12 @@
     "released": 1764547200,
     "owned_by": "deepseek",
     "name": "DeepSeek V3.2",
-    "description": "DeepSeek-V3.2: Official successor to V3.2-Exp.",
+    "description": "DeepSeek‑V3.2 from DeepSeek harmonizes high computational efficiency with superior reasoning and agent performance. It builds on three main techniques: DeepSeek Sparse Attention for long‑context efficiency, a scalable reinforcement learning framework, and a large‑scale agentic task synthesis pipeline. This model excels at long-context reasoning and agentic tasks, efficiently handling extended inputs while maintaining strong accuracy. Its sparse attention design enables it to process complex, multi-step workflows without excessive compute costs. Overall, DeepSeek‑V3.2 targets long‑context reasoning, tool‑using agents, and efficient deployment in production environments.",
     "context_window": 128000,
     "max_tokens": 8000,
     "type": "language",
     "zdr": "some",
-    "no_training": "some",
+    "no_training": "all",
     "tags": ["tool-use", "implicit-caching"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
@@ -5317,9 +5389,8 @@
     "temperature": true,
     "knowledge": "2024-07",
     "pricing": {
-      "input": "0.00000028",
-      "output": "0.00000042",
-      "input_cache_read": "0.000000028",
+      "input": "0.00000062",
+      "output": "0.00000185",
       "varies_by_provider": true
     }
   },
@@ -5469,7 +5540,7 @@
     "max_tokens": 1048576,
     "type": "language",
     "zdr": "some",
-    "no_training": "some",
+    "no_training": "all",
     "tags": ["reasoning", "tool-use", "implicit-caching", "vision"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
@@ -5495,6 +5566,7 @@
         "values": ["high", "xhigh"]
       }
     ],
+    "deprecated_at": 1790294400000,
     "pricing": {
       "input": "0.00000022",
       "output": "0.00000066",
@@ -5564,9 +5636,9 @@
       "varies_by_provider": true,
       "regional": {
         "us": {
-          "input": "0.00000174",
-          "output": "0.00000348",
-          "input_cache_read": "0.00000015"
+          "input": "0.00000132",
+          "output": "0.00000396",
+          "input_cache_read": "0.000000132"
         }
       }
     }
@@ -5634,6 +5706,50 @@
     }
   },
   {
+    "id": "deepseek/deepseek-v4.1-flash",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1788825600,
+    "owned_by": "deepseek",
+    "name": "DeepSeek V4.1 Flash",
+    "description": "DeepSeek V4.1 Flash is an AI model from DeepSeek designed for fast, efficient multimodal interactions. It combines native multimodal capabilities with a new architecture focused on stronger performance, faster responses, and lower computational cost.",
+    "context_window": 1048576,
+    "max_tokens": 32768,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": ["reasoning", "tool-use", "implicit-caching", "vision"],
+    "regions": ["us"],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning"
+    ],
+    "temperature": true,
+    "pricing": {
+      "input": "0.0000003",
+      "output": "0.0000012",
+      "input_cache_read": "0.00000003",
+      "varies_by_provider": true,
+      "regional": {
+        "us": {
+          "input": "0.0000003",
+          "output": "0.0000012",
+          "input_cache_read": "0.00000003"
+        }
+      }
+    }
+  },
+  {
     "id": "fish-audio/s1",
     "object": "model",
     "created": 1755815280,
@@ -5644,32 +5760,15 @@
     "type": "speech",
     "zdr": "none",
     "no_training": "none",
-    "tags": ["free"],
     "supported_specifications": ["v3", "v4"],
     "modalities": {
       "input": ["text"],
       "output": ["audio"]
     },
-    "pricing": {}
-  },
-  {
-    "id": "fish-audio/s1-free",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1760918400,
-    "owned_by": "fish-audio",
-    "name": "S1 (Free)",
-    "description": "Fish Audio S1 is trained on over 2 million hours of audio with online RLHF (GRPO). It achieves 0.8% WER and 0.4% CER on Seed TTS Eval. S1 supports open-domain emotion, tone, and special effect markers.",
-    "type": "speech",
-    "zdr": "none",
-    "no_training": "none",
-    "tags": ["free"],
-    "supported_specifications": ["v3", "v4"],
-    "modalities": {
-      "input": ["text"],
-      "output": ["audio"]
-    },
-    "pricing": {}
+    "pricing": {
+      "input": "0.000015",
+      "speech_input_character_cost": "0.000015"
+    }
   },
   {
     "id": "fish-audio/s2-pro",
@@ -5682,32 +5781,15 @@
     "type": "speech",
     "zdr": "none",
     "no_training": "none",
-    "tags": ["free"],
     "supported_specifications": ["v3", "v4"],
     "modalities": {
       "input": ["text"],
       "output": ["audio"]
     },
-    "pricing": {}
-  },
-  {
-    "id": "fish-audio/s2-pro-free",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1773014400,
-    "owned_by": "fish-audio",
-    "name": "S2 Pro (Free)",
-    "description": "Fish Audio S2 is the second-generation TTS model from Fish Audio. It's trained on over 10 million hours of audio across approximately 80 languages, and it introduces inline tag control: natural-language instructions embedded directly in your script at any position, giving you fine-grained direction over how speech is delivered at the word or phrase level.",
-    "type": "speech",
-    "zdr": "none",
-    "no_training": "none",
-    "tags": ["free"],
-    "supported_specifications": ["v3", "v4"],
-    "modalities": {
-      "input": ["text"],
-      "output": ["audio"]
-    },
-    "pricing": {}
+    "pricing": {
+      "input": "0.000015",
+      "speech_input_character_cost": "0.000015"
+    }
   },
   {
     "id": "fish-audio/s2.1-pro",
@@ -5720,32 +5802,15 @@
     "type": "speech",
     "zdr": "none",
     "no_training": "none",
-    "tags": ["free"],
     "supported_specifications": ["v3", "v4"],
     "modalities": {
       "input": ["text"],
       "output": ["audio"]
     },
-    "pricing": {}
-  },
-  {
-    "id": "fish-audio/s2.1-pro-free",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1785196800,
-    "owned_by": "fish-audio",
-    "name": "S2.1 Pro (Free)",
-    "description": "S2.1 Pro is Fish Audio's current state-of-the-art voice model — the best model we have, now available to every developer for free via API. It is a neural speech synthesis model designed for production-grade AI voice generation, with particular strengths in low-latency streaming, multilingual TTS, and voice cloning. ",
-    "type": "speech",
-    "zdr": "none",
-    "no_training": "none",
-    "tags": ["free"],
-    "supported_specifications": ["v3", "v4"],
-    "modalities": {
-      "input": ["text"],
-      "output": ["audio"]
-    },
-    "pricing": {}
+    "pricing": {
+      "input": "0.000015",
+      "speech_input_character_cost": "0.000015"
+    }
   },
   {
     "id": "fish-audio/transcribe-1",
@@ -5758,32 +5823,15 @@
     "type": "transcription",
     "zdr": "none",
     "no_training": "none",
-    "tags": ["free"],
     "supported_specifications": ["v3", "v4"],
     "modalities": {
       "input": ["audio"],
       "output": ["text"]
     },
-    "pricing": {}
-  },
-  {
-    "id": "fish-audio/transcribe-1-free",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1772323200,
-    "owned_by": "fish-audio",
-    "name": "Transcribe-1 (Free)",
-    "description": "Turn spoken audio into accurate text — with timed segments — using Fish Audio’s ASR model. Send an audio file, get back the transcript, its duration, and timestamped segments.",
-    "type": "transcription",
-    "zdr": "none",
-    "no_training": "none",
-    "tags": ["free"],
-    "supported_specifications": ["v3", "v4"],
-    "modalities": {
-      "input": ["audio"],
-      "output": ["text"]
-    },
-    "pricing": {}
+    "pricing": {
+      "input": "0.0000000001",
+      "transcription_duration_cost_per_second": "0.0001"
+    }
   },
   {
     "id": "google/gemini-2.5-flash",
@@ -7140,6 +7188,62 @@
     }
   },
   {
+    "id": "google/gemini-3.8-live",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1789430400,
+    "owned_by": "google",
+    "name": "Gemini 3.8 Live",
+    "description": "Gemini 3.8 Live is Google's model for real-time audio conversations. It supports spoken interactions for developers building voice assistants, conversational experiences, and applications that respond to users through audio.",
+    "context_window": 0,
+    "max_tokens": 0,
+    "type": "realtime",
+    "zdr": "none",
+    "no_training": "all",
+    "tags": ["websocket-realtime"],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text", "audio"],
+      "output": ["text", "audio"]
+    },
+    "supported_parameters": ["max_tokens", "temperature", "stop"],
+    "temperature": true,
+    "pricing": {
+      "input": "0.00000075",
+      "output": "0.0000045",
+      "audio_input_token_cost": "0.000003",
+      "audio_output_token_cost": "0.000012"
+    }
+  },
+  {
+    "id": "google/gemini-3.8-live-extended-thinking",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1789430400,
+    "owned_by": "google",
+    "name": "Gemini 3.8 Live Extended Thinking",
+    "description": "Gemini 3.8 Live Extended Thinking is Google's real-time audio model with extended thinking capabilities. It combines spoken interaction with additional reasoning for voice assistants and other conversational applications.",
+    "context_window": 0,
+    "max_tokens": 0,
+    "type": "realtime",
+    "zdr": "none",
+    "no_training": "all",
+    "tags": ["websocket-realtime"],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text", "audio"],
+      "output": ["text", "audio"]
+    },
+    "supported_parameters": ["max_tokens", "temperature", "stop"],
+    "temperature": true,
+    "pricing": {
+      "input": "0.00000075",
+      "output": "0.0000045",
+      "audio_input_token_cost": "0.000003",
+      "audio_output_token_cost": "0.000012"
+    }
+  },
+  {
     "id": "google/gemini-embedding-001",
     "object": "model",
     "created": 1755815280,
@@ -7286,7 +7390,7 @@
     "type": "language",
     "zdr": "some",
     "no_training": "some",
-    "tags": ["file-input", "reasoning", "tool-use", "vision"],
+    "tags": ["tool-use", "vision", "file-input", "reasoning"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text", "image", "pdf"],
@@ -7304,8 +7408,7 @@
     "temperature": true,
     "pricing": {
       "input": "0.00000014",
-      "output": "0.0000004",
-      "varies_by_provider": true
+      "output": "0.0000004"
     }
   },
   {
@@ -7740,6 +7843,41 @@
     }
   },
   {
+    "id": "inception/mercury-2.5",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1788825600,
+    "owned_by": "inception",
+    "name": "Mercury 2.5",
+    "description": "Mercury 2.5 is Inception’s diffusion-based reasoning model for chat, agents, and structured workflows, with tool calling, structured outputs, and a 260K context window.",
+    "context_window": 260000,
+    "max_tokens": 65536,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "all",
+    "tags": ["implicit-caching", "reasoning", "tool-use"],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning"
+    ],
+    "temperature": true,
+    "pricing": {
+      "input": "0.00000004",
+      "output": "0.00000015",
+      "input_cache_read": "0.000000004"
+    }
+  },
+  {
     "id": "inception/mercury-coder-small",
     "object": "model",
     "created": 1755815280,
@@ -7801,9 +7939,9 @@
     ],
     "temperature": true,
     "pricing": {
-      "input": "0.00000006",
-      "output": "0.00000018",
-      "input_cache_read": "0.000000012"
+      "input": "0.000000021",
+      "output": "0.000000063",
+      "input_cache_read": "0.0000000042"
     }
   },
   {
@@ -7951,6 +8089,140 @@
     "pricing": {
       "input": "0",
       "output": "0"
+    }
+  },
+  {
+    "id": "inclusionai/ling-3.0-flash-vl",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1788825600,
+    "owned_by": "inclusionai",
+    "name": "Ling 3.0 Flash VL",
+    "description": "Ling 3.0 Flash VL builds on Ling 3.0 Flash with stronger language capabilities, native visual perception, and visual agent capabilities. It supports text, image, and video inputs with text output, reasoning, and function calling.",
+    "context_window": 256000,
+    "max_tokens": 32000,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "all",
+    "tags": ["free", "reasoning", "tool-use", "video-input", "vision"],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text", "image", "video"],
+      "output": ["text"]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning"
+    ],
+    "temperature": true,
+    "pricing": {
+      "input": "0",
+      "output": "0"
+    }
+  },
+  {
+    "id": "inclusionai/ling-3.0-flash-vl-free",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1788825600,
+    "owned_by": "inclusionai",
+    "name": "Ling 3.0 Flash VL (Free)",
+    "description": "Ling 3.0 Flash VL builds on Ling 3.0 Flash with stronger language capabilities, native visual perception, and visual agent capabilities. It supports text, image, and video inputs with text output, reasoning, and function calling.",
+    "context_window": 256000,
+    "max_tokens": 32000,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "all",
+    "tags": ["free", "reasoning", "tool-use", "video-input", "vision"],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text", "image", "video"],
+      "output": ["text"]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning"
+    ],
+    "temperature": true,
+    "pricing": {
+      "input": "0",
+      "output": "0"
+    }
+  },
+  {
+    "id": "inference-net/schematron-v2-small",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1776297600,
+    "owned_by": "inference-net",
+    "name": "Schematron V2 Small",
+    "description": "Schematron V2 Small is a specialized model from Inference.net for extracting structured data from HTML. It uses a supplied JSON Schema to produce conforming JSON and is designed for complex schemas and long pages.",
+    "context_window": 128000,
+    "max_tokens": 4096,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "none",
+    "tags": ["structured-output"],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "pricing": {
+      "input": "0.00000005",
+      "output": "0.00000023",
+      "input_cache_read": "0.00000005"
+    }
+  },
+  {
+    "id": "inference-net/schematron-v2-turbo",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1776297600,
+    "owned_by": "inference-net",
+    "name": "Schematron V2 Turbo",
+    "description": "Schematron V2 Turbo is a specialized model from Inference.net for extracting structured data from HTML. It uses a supplied JSON Schema to produce conforming JSON and is optimized for high-throughput extraction.",
+    "context_window": 128000,
+    "max_tokens": 8192,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "none",
+    "tags": ["structured-output"],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "pricing": {
+      "input": "0.00000003",
+      "output": "0.00000015",
+      "input_cache_read": "0.00000003"
     }
   },
   {
@@ -8486,145 +8758,6 @@
     }
   },
   {
-    "id": "kwaipilot/kat-coder-air-v2.5",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1783641600,
-    "owned_by": "kwaipilot",
-    "name": "Kat Coder Air V2.5",
-    "description": "Fast response version of Kat Coder V2.5 optimized for Agent and Claw use cases.",
-    "context_window": 256000,
-    "max_tokens": 80000,
-    "type": "language",
-    "zdr": "none",
-    "no_training": "none",
-    "tags": ["reasoning", "tool-use", "implicit-caching", "vision"],
-    "supported_specifications": ["v2", "v3", "v4"],
-    "modalities": {
-      "input": ["text", "image"],
-      "output": ["text"]
-    },
-    "supported_parameters": [
-      "max_tokens",
-      "temperature",
-      "stop",
-      "tools",
-      "tool_choice",
-      "reasoning",
-      "include_reasoning"
-    ],
-    "temperature": true,
-    "pricing": {
-      "input": "0.00000015",
-      "output": "0.0000006",
-      "input_cache_read": "0.00000003"
-    }
-  },
-  {
-    "id": "kwaipilot/kat-coder-pro-v1",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1762646400,
-    "owned_by": "kwaipilot",
-    "name": "KAT-Coder-Pro V1",
-    "description": "KAT-Coder-Pro V1 is KwaiKAT's most advanced agentic coding model in the KwaiKAT series. Designed specifically for agentic coding tasks, it excels in real-world software engineering scenarios, achieving a remarkable 73.4% solve rate on the SWE-Bench Verified benchmark. KAT-Coder-Pro V1 delivers top-tier coding performance and has been rigorously tested by thousands of in-house engineers. The model has been optimized for tool-use capability, multi-turn interaction, instruction following, generalization and comprehensive capabilities through a multi-stage training process, including mid-training, supervised fine-tuning (SFT), reinforcement fine-tuning (RFT), and scalable agentic RL.",
-    "context_window": 256000,
-    "max_tokens": 32000,
-    "type": "language",
-    "zdr": "none",
-    "no_training": "all",
-    "tags": ["tool-use"],
-    "supported_specifications": ["v2", "v3", "v4"],
-    "modalities": {
-      "input": ["text"],
-      "output": ["text"]
-    },
-    "supported_parameters": [
-      "max_tokens",
-      "temperature",
-      "stop",
-      "tools",
-      "tool_choice"
-    ],
-    "temperature": true,
-    "knowledge": "2024-10",
-    "pricing": {
-      "input": "0.0000003",
-      "output": "0.0000012",
-      "input_cache_read": "0.00000006"
-    }
-  },
-  {
-    "id": "kwaipilot/kat-coder-pro-v2",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1774569600,
-    "owned_by": "kwaipilot",
-    "name": "Kat Coder Pro V2",
-    "description": "A high-performance edition designed for complex enterprise projects and SaaS integration.",
-    "context_window": 256000,
-    "max_tokens": 256000,
-    "type": "language",
-    "zdr": "none",
-    "no_training": "none",
-    "tags": ["tool-use", "reasoning", "implicit-caching"],
-    "supported_specifications": ["v2", "v3", "v4"],
-    "modalities": {
-      "input": ["text"],
-      "output": ["text"]
-    },
-    "supported_parameters": [
-      "max_tokens",
-      "temperature",
-      "stop",
-      "tools",
-      "tool_choice",
-      "reasoning",
-      "include_reasoning"
-    ],
-    "temperature": true,
-    "pricing": {
-      "input": "0.0000003",
-      "output": "0.0000012",
-      "input_cache_read": "0.00000006"
-    }
-  },
-  {
-    "id": "kwaipilot/kat-coder-pro-v2.5",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1783641600,
-    "owned_by": "kwaipilot",
-    "name": "Kat Coder Pro V2.5",
-    "description": "KAT-Coder-V2.5 is a coding-focused agentic model trained to act autonomously inside real, executable repositories rather than as a single-turn code generator.",
-    "context_window": 256000,
-    "max_tokens": 80000,
-    "type": "language",
-    "zdr": "none",
-    "no_training": "none",
-    "tags": ["reasoning", "tool-use", "implicit-caching", "vision"],
-    "supported_specifications": ["v2", "v3", "v4"],
-    "modalities": {
-      "input": ["text", "image"],
-      "output": ["text"]
-    },
-    "supported_parameters": [
-      "max_tokens",
-      "temperature",
-      "stop",
-      "tools",
-      "tool_choice",
-      "reasoning",
-      "include_reasoning"
-    ],
-    "temperature": true,
-    "pricing": {
-      "input": "0.00000074",
-      "output": "0.00000296",
-      "input_cache_read": "0.00000015"
-    }
-  },
-  {
     "id": "meta/llama-3.1-70b",
     "object": "model",
     "created": 1755815280,
@@ -8829,11 +8962,11 @@
       }
     ],
     "knowledge": "2026-01-04",
+    "deprecated_at": 1790294400000,
     "pricing": {
       "input": "0.00000035",
       "output": "0.0000015",
-      "input_cache_read": "0.00000004",
-      "varies_by_provider": true
+      "input_cache_read": "0.00000004"
     }
   },
   {
@@ -9134,14 +9267,14 @@
       "video_duration_pricing": [
         {
           "resolution": "2k",
-          "cost_per_second": "0.065"
+          "cost_per_second": "0.13"
         },
         {
           "resolution": "768p",
-          "cost_per_second": "0.04"
+          "cost_per_second": "0.08"
         },
         {
-          "cost_per_second": "0.065"
+          "cost_per_second": "0.13"
         }
       ]
     }
@@ -9193,14 +9326,14 @@
       "video_duration_pricing": [
         {
           "resolution": "480p",
-          "cost_per_second": "0.025"
+          "cost_per_second": "0.05"
         },
         {
           "resolution": "768p",
-          "cost_per_second": "0.04"
+          "cost_per_second": "0.08"
         },
         {
-          "cost_per_second": "0.04"
+          "cost_per_second": "0.08"
         }
       ]
     }
@@ -9218,7 +9351,7 @@
     "type": "language",
     "zdr": "none",
     "no_training": "some",
-    "tags": ["reasoning", "tool-use"],
+    "tags": ["reasoning", "tool-use", "explicit-caching"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text"],
@@ -9256,7 +9389,7 @@
     "type": "language",
     "zdr": "some",
     "no_training": "some",
-    "tags": ["reasoning", "tool-use", "implicit-caching"],
+    "tags": ["reasoning", "tool-use", "implicit-caching", "explicit-caching"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text"],
@@ -9294,7 +9427,7 @@
     "type": "language",
     "zdr": "none",
     "no_training": "none",
-    "tags": ["reasoning", "tool-use", "implicit-caching"],
+    "tags": ["reasoning", "tool-use", "implicit-caching", "explicit-caching"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text"],
@@ -9331,7 +9464,7 @@
     "type": "language",
     "zdr": "some",
     "no_training": "some",
-    "tags": ["reasoning", "tool-use", "implicit-caching"],
+    "tags": ["reasoning", "tool-use", "implicit-caching", "explicit-caching"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text"],
@@ -9352,7 +9485,6 @@
       "output": "0.0000012",
       "input_cache_read": "0.00000003",
       "input_cache_write": "0.000000375",
-      "varies_by_provider": true,
       "fast": {
         "input": "0.0000006",
         "output": "0.0000024",
@@ -9374,7 +9506,7 @@
     "type": "language",
     "zdr": "none",
     "no_training": "some",
-    "tags": ["reasoning", "tool-use", "implicit-caching"],
+    "tags": ["reasoning", "tool-use", "implicit-caching", "explicit-caching"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text"],
@@ -9410,7 +9542,7 @@
     "type": "language",
     "zdr": "none",
     "no_training": "some",
-    "tags": ["reasoning", "tool-use", "implicit-caching"],
+    "tags": ["reasoning", "tool-use", "implicit-caching", "explicit-caching"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text"],
@@ -9431,6 +9563,7 @@
       "output": "0.0000012",
       "input_cache_read": "0.00000006",
       "input_cache_write": "0.000000375",
+      "varies_by_provider": true,
       "fast": {
         "input": "0.0000006",
         "output": "0.0000024",
@@ -9452,7 +9585,7 @@
     "type": "language",
     "zdr": "none",
     "no_training": "none",
-    "tags": ["reasoning", "tool-use", "implicit-caching"],
+    "tags": ["reasoning", "tool-use", "implicit-caching", "explicit-caching"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
       "input": ["text"],
@@ -9552,7 +9685,8 @@
     "knowledge": "2024-10",
     "pricing": {
       "input": "0.0000003",
-      "output": "0.0000009"
+      "output": "0.0000009",
+      "input_cache_read": "0.00000003"
     }
   },
   {
@@ -9574,73 +9708,8 @@
       "output": ["text"]
     },
     "pricing": {
-      "input": "0.00000015"
-    }
-  },
-  {
-    "id": "mistral/devstral-2",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1765238400,
-    "owned_by": "mistral",
-    "name": "Devstral 2",
-    "description": "An enterprise-grade text model that excels at using tools to explore codebases, editing multiple files, and powering software engineering agents.",
-    "context_window": 256000,
-    "max_tokens": 256000,
-    "type": "language",
-    "zdr": "all",
-    "no_training": "all",
-    "tags": ["tool-use"],
-    "supported_specifications": ["v2", "v3", "v4"],
-    "modalities": {
-      "input": ["text"],
-      "output": ["text"]
-    },
-    "supported_parameters": [
-      "max_tokens",
-      "temperature",
-      "stop",
-      "tools",
-      "tool_choice"
-    ],
-    "temperature": true,
-    "knowledge": "2024-10",
-    "pricing": {
-      "input": "0.0000004",
-      "output": "0.000002"
-    }
-  },
-  {
-    "id": "mistral/devstral-small-2",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1765238400,
-    "owned_by": "mistral",
-    "name": "Devstral Small 2",
-    "description": "Our open source model that excels at using tools to explore codebases, editing multiple files, and powering software engineering agents.",
-    "context_window": 256000,
-    "max_tokens": 256000,
-    "type": "language",
-    "zdr": "all",
-    "no_training": "all",
-    "tags": ["tool-use", "vision"],
-    "supported_specifications": ["v2", "v3", "v4"],
-    "modalities": {
-      "input": ["text", "image"],
-      "output": ["text"]
-    },
-    "supported_parameters": [
-      "max_tokens",
-      "temperature",
-      "stop",
-      "tools",
-      "tool_choice"
-    ],
-    "temperature": true,
-    "knowledge": "2024-10",
-    "pricing": {
-      "input": "0.0000001",
-      "output": "0.0000003"
+      "input": "0.00000015",
+      "input_cache_read": "0.000000015"
     }
   },
   {
@@ -9651,7 +9720,7 @@
     "owned_by": "mistral",
     "name": "Ministral 14B",
     "description": "Ministral 3 14B is the largest model in the Ministral 3 family, offering state-of-the-art capabilities and performance comparable to its larger Mistral Small 3.2 24B counterpart. Optimized for local deployment, it delivers high performance across diverse hardware, including local setups.",
-    "context_window": 256000,
+    "context_window": 262144,
     "max_tokens": 256000,
     "type": "language",
     "zdr": "all",
@@ -9673,7 +9742,8 @@
     "knowledge": "2024-10",
     "pricing": {
       "input": "0.0000002",
-      "output": "0.0000002"
+      "output": "0.0000002",
+      "input_cache_read": "0.00000002"
     }
   },
   {
@@ -9684,7 +9754,7 @@
     "owned_by": "mistral",
     "name": "Ministral 3B",
     "description": "A compact, efficient model for on-device tasks like smart assistants and local analytics, offering low-latency performance.",
-    "context_window": 128000,
+    "context_window": 131072,
     "max_tokens": 4000,
     "type": "language",
     "zdr": "all",
@@ -9706,7 +9776,8 @@
     "knowledge": "2024-10",
     "pricing": {
       "input": "0.0000001",
-      "output": "0.0000001"
+      "output": "0.0000001",
+      "input_cache_read": "0.00000001"
     }
   },
   {
@@ -9717,7 +9788,7 @@
     "owned_by": "mistral",
     "name": "Ministral 8B",
     "description": "A more powerful model with faster, memory-efficient inference, ideal for complex workflows and demanding edge applications.",
-    "context_window": 128000,
+    "context_window": 262144,
     "max_tokens": 4000,
     "type": "language",
     "zdr": "all",
@@ -9739,7 +9810,8 @@
     "knowledge": "2024-10",
     "pricing": {
       "input": "0.00000015",
-      "output": "0.00000015"
+      "output": "0.00000015",
+      "input_cache_read": "0.000000015"
     }
   },
   {
@@ -9772,7 +9844,7 @@
     "owned_by": "mistral",
     "name": "Mistral Large 3",
     "description": "Mistral Large 3 2512 is Mistral’s most capable model to date. It has a sparse mixture-of-experts architecture with 41B active parameters (675B total).",
-    "context_window": 256000,
+    "context_window": 262144,
     "max_tokens": 256000,
     "type": "language",
     "zdr": "all",
@@ -9794,40 +9866,8 @@
     "knowledge": "2024-10",
     "pricing": {
       "input": "0.0000005",
-      "output": "0.0000015"
-    }
-  },
-  {
-    "id": "mistral/mistral-medium",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1746576000,
-    "owned_by": "mistral",
-    "name": "Mistral Medium 3.1",
-    "description": "Mistral Medium 3 delivers frontier performance while being an order of magnitude less expensive. For instance, the model performs at or above 90% of Claude Sonnet 3.7 on benchmarks across the board at a significantly lower cost.",
-    "context_window": 128000,
-    "max_tokens": 64000,
-    "type": "language",
-    "zdr": "all",
-    "no_training": "all",
-    "tags": ["tool-use", "vision"],
-    "supported_specifications": ["v2", "v3", "v4"],
-    "modalities": {
-      "input": ["text", "image"],
-      "output": ["text"]
-    },
-    "supported_parameters": [
-      "max_tokens",
-      "temperature",
-      "stop",
-      "tools",
-      "tool_choice"
-    ],
-    "temperature": true,
-    "knowledge": "2024-10",
-    "pricing": {
-      "input": "0.0000004",
-      "output": "0.000002"
+      "output": "0.0000015",
+      "input_cache_read": "0.00000005"
     }
   },
   {
@@ -9838,7 +9878,7 @@
     "owned_by": "mistral",
     "name": "Mistral Medium Latest",
     "description": "Mistral's frontier-class multimodal model optimized for agentic and coding use cases.",
-    "context_window": 256000,
+    "context_window": 262144,
     "max_tokens": 256000,
     "type": "language",
     "zdr": "all",
@@ -9867,7 +9907,8 @@
     ],
     "pricing": {
       "input": "0.0000015",
-      "output": "0.0000075"
+      "output": "0.0000075",
+      "input_cache_read": "0.00000015"
     }
   },
   {
@@ -9878,15 +9919,15 @@
     "owned_by": "mistral",
     "name": "Mistral Nemo 12B",
     "description": "A 12B parameter model with a 128k token context length built by Mistral in collaboration with NVIDIA. The model is multilingual, supporting English, French, German, Spanish, Italian, Portuguese, Chinese, Japanese, Korean, Arabic, and Hindi. It supports function calling and is released under the Apache 2.0 license.",
-    "context_window": 128000,
-    "max_tokens": 128000,
+    "context_window": 60288,
+    "max_tokens": 16000,
     "type": "language",
     "zdr": "some",
     "no_training": "all",
-    "tags": ["tool-use", "vision"],
+    "tags": ["tool-use"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
-      "input": ["text", "image"],
+      "input": ["text"],
       "output": ["text"]
     },
     "supported_parameters": [
@@ -9899,8 +9940,8 @@
     "temperature": true,
     "knowledge": "2024-04",
     "pricing": {
-      "input": "0.00000015",
-      "output": "0.00000015",
+      "input": "0.00000004",
+      "output": "0.00000017",
       "varies_by_provider": true
     }
   },
@@ -9911,8 +9952,8 @@
     "released": 1726531200,
     "owned_by": "mistral",
     "name": "Mistral Small",
-    "description": "Mistral Small is the ideal choice for simple tasks that one can do in bulk - like Classification, Customer Support, or Text Generation. It offers excellent performance at an affordable price point.",
-    "context_window": 32000,
+    "description": "Mistral Small currently runs Mistral Small 4, a multimodal model combining instruction following, reasoning, and coding with a 262,144-token context window.",
+    "context_window": 262144,
     "max_tokens": 4000,
     "type": "language",
     "zdr": "all",
@@ -9933,41 +9974,9 @@
     "temperature": true,
     "knowledge": "2025-06",
     "pricing": {
-      "input": "0.0000001",
-      "output": "0.0000003"
-    }
-  },
-  {
-    "id": "mistral/pixtral-12b",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1726531200,
-    "owned_by": "mistral",
-    "name": "Pixtral 12B 2409",
-    "description": "A 12B model with image understanding capabilities in addition to text.",
-    "context_window": 128000,
-    "max_tokens": 4000,
-    "type": "language",
-    "zdr": "all",
-    "no_training": "all",
-    "tags": ["tool-use", "vision"],
-    "supported_specifications": ["v2", "v3", "v4"],
-    "modalities": {
-      "input": ["text", "image"],
-      "output": ["text"]
-    },
-    "supported_parameters": [
-      "max_tokens",
-      "temperature",
-      "stop",
-      "tools",
-      "tool_choice"
-    ],
-    "temperature": true,
-    "knowledge": "2024-09",
-    "pricing": {
       "input": "0.00000015",
-      "output": "0.00000015"
+      "output": "0.0000006",
+      "input_cache_read": "0.000000015"
     }
   },
   {
@@ -10047,21 +10056,15 @@
     "owned_by": "moonshotai",
     "name": "Kimi K2.5",
     "description": "kimi-k2.5 is Kimi's most versatile model to date, featuring a native multimodal architecture that supports both visual and text input, thinking and non-thinking modes, and dialogue and agent tasks.",
-    "context_window": 262114,
-    "max_tokens": 262114,
+    "context_window": 256000,
+    "max_tokens": 256000,
     "type": "language",
     "zdr": "some",
     "no_training": "all",
-    "tags": [
-      "reasoning",
-      "vision",
-      "tool-use",
-      "implicit-caching",
-      "video-input"
-    ],
+    "tags": ["reasoning", "vision", "tool-use", "implicit-caching"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
-      "input": ["text", "image", "video"],
+      "input": ["text", "image"],
       "output": ["text"]
     },
     "supported_parameters": [
@@ -10083,8 +10086,7 @@
     "interleaved": true,
     "pricing": {
       "input": "0.0000006",
-      "output": "0.000003",
-      "input_cache_read": "0.0000001"
+      "output": "0.000003"
     }
   },
   {
@@ -10133,6 +10135,7 @@
       "input": "0.00000095",
       "output": "0.000004",
       "input_cache_read": "0.00000016",
+      "varies_by_provider": true,
       "regional": {
         "us": {
           "input": "0.00000095",
@@ -10180,6 +10183,7 @@
     ],
     "temperature": true,
     "knowledge": "2025-01",
+    "deprecated_at": 1790380800000,
     "pricing": {
       "input": "0.00000095",
       "output": "0.000004",
@@ -10261,6 +10265,7 @@
       "implicit-caching",
       "file-input",
       "vision",
+      "structured-output",
       "video-input"
     ],
     "regions": ["us"],
@@ -10275,9 +10280,17 @@
       "tools",
       "tool_choice",
       "reasoning",
-      "include_reasoning"
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
     ],
     "temperature": false,
+    "reasoning_options": [
+      {
+        "type": "effort",
+        "values": ["low", "high", "max"]
+      }
+    ],
     "pricing": {
       "input": "0.000003",
       "output": "0.000015",
@@ -10430,7 +10443,8 @@
     ],
     "pricing": {
       "input": "0.00000005",
-      "output": "0.00000024"
+      "output": "0.0000002",
+      "input_cache_read": "0.000000025"
     }
   },
   {
@@ -13089,6 +13103,7 @@
       "vision",
       "implicit-caching",
       "web-search",
+      "explicit-caching",
       "websocket-realtime",
       "fast"
     ],
@@ -13361,6 +13376,7 @@
       "vision",
       "implicit-caching",
       "web-search",
+      "explicit-caching",
       "websocket-realtime",
       "fast"
     ],
@@ -13510,6 +13526,7 @@
       "file-input",
       "vision",
       "web-search",
+      "explicit-caching",
       "websocket-realtime",
       "fast"
     ],
@@ -13529,280 +13546,6 @@
       "include_reasoning"
     ],
     "temperature": true,
-    "reasoning_options": [
-      {
-        "type": "effort",
-        "values": ["none", "low", "medium", "high", "xhigh", "max"]
-      }
-    ],
-    "knowledge": "2026-02-16",
-    "pricing": {
-      "input": "0.000002",
-      "input_tiers": [
-        {
-          "cost": "0.000002",
-          "min": 0,
-          "max": 272000
-        },
-        {
-          "cost": "0.000004",
-          "min": 272000
-        }
-      ],
-      "output": "0.00001",
-      "output_tiers": [
-        {
-          "cost": "0.00001",
-          "min": 0,
-          "max": 272000
-        },
-        {
-          "cost": "0.000015",
-          "min": 272000
-        }
-      ],
-      "input_cache_read": "0.0000002",
-      "input_cache_read_tiers": [
-        {
-          "cost": "0.0000002",
-          "min": 0,
-          "max": 272000
-        },
-        {
-          "cost": "0.0000004",
-          "min": 272000
-        }
-      ],
-      "input_cache_write": "0.0000025",
-      "input_cache_write_tiers": [
-        {
-          "cost": "0.0000025",
-          "min": 0,
-          "max": 272000
-        },
-        {
-          "cost": "0.000005",
-          "min": 272000
-        }
-      ],
-      "web_search": "10",
-      "service_tiers": {
-        "flex": {
-          "input": "0.000001",
-          "output": "0.000005",
-          "input_cache_read": "0.0000001",
-          "long_context": {
-            "threshold": 272000,
-            "input": "0.000002",
-            "output": "0.0000075",
-            "input_cache_read": "0.0000002"
-          }
-        },
-        "priority": {
-          "input": "0.000004",
-          "output": "0.00002",
-          "input_cache_read": "0.0000004",
-          "long_context": {
-            "threshold": 272000,
-            "input": "0.000008",
-            "output": "0.00003",
-            "input_cache_read": "0.0000008"
-          }
-        }
-      },
-      "varies_by_provider": true,
-      "fast": {
-        "input": "0.000004",
-        "input_tiers": [
-          {
-            "cost": "0.000004",
-            "min": 0,
-            "max": 272000
-          },
-          {
-            "cost": "0.000008",
-            "min": 272000
-          }
-        ],
-        "output": "0.00002",
-        "output_tiers": [
-          {
-            "cost": "0.00002",
-            "min": 0,
-            "max": 272000
-          },
-          {
-            "cost": "0.00003",
-            "min": 272000
-          }
-        ],
-        "input_cache_read": "0.0000004",
-        "input_cache_read_tiers": [
-          {
-            "cost": "0.0000004",
-            "min": 0,
-            "max": 272000
-          },
-          {
-            "cost": "0.0000008",
-            "min": 272000
-          }
-        ],
-        "input_cache_write": "0.000005",
-        "input_cache_write_tiers": [
-          {
-            "cost": "0.000005",
-            "min": 0,
-            "max": 272000
-          },
-          {
-            "cost": "0.00001",
-            "min": 272000
-          }
-        ]
-      },
-      "regional": {
-        "us": {
-          "input": "0.0000022",
-          "input_tiers": [
-            {
-              "cost": "0.0000022",
-              "min": 0,
-              "max": 272000
-            },
-            {
-              "cost": "0.0000044",
-              "min": 272000
-            }
-          ],
-          "output": "0.000011",
-          "output_tiers": [
-            {
-              "cost": "0.000011",
-              "min": 0,
-              "max": 272000
-            },
-            {
-              "cost": "0.0000165",
-              "min": 272000
-            }
-          ],
-          "input_cache_read": "0.00000022",
-          "input_cache_read_tiers": [
-            {
-              "cost": "0.00000022",
-              "min": 0,
-              "max": 272000
-            },
-            {
-              "cost": "0.00000044",
-              "min": 272000
-            }
-          ],
-          "input_cache_write": "0.000001375",
-          "input_cache_write_tiers": [
-            {
-              "cost": "0.000001375",
-              "min": 0,
-              "max": 272000
-            },
-            {
-              "cost": "0.00000275",
-              "min": 272000
-            }
-          ],
-          "fast": {
-            "input": "0.0000044",
-            "input_tiers": [
-              {
-                "cost": "0.0000044",
-                "min": 0,
-                "max": 272000
-              },
-              {
-                "cost": "0.0000088",
-                "min": 272000
-              }
-            ],
-            "output": "0.000022",
-            "output_tiers": [
-              {
-                "cost": "0.000022",
-                "min": 0,
-                "max": 272000
-              },
-              {
-                "cost": "0.000033",
-                "min": 272000
-              }
-            ],
-            "input_cache_read": "0.00000044",
-            "input_cache_read_tiers": [
-              {
-                "cost": "0.00000044",
-                "min": 0,
-                "max": 272000
-              },
-              {
-                "cost": "0.00000088",
-                "min": 272000
-              }
-            ],
-            "input_cache_write": "0.00000275",
-            "input_cache_write_tiers": [
-              {
-                "cost": "0.00000275",
-                "min": 0,
-                "max": 272000
-              },
-              {
-                "cost": "0.0000055",
-                "min": 272000
-              }
-            ]
-          }
-        }
-      }
-    }
-  },
-  {
-    "id": "openai/gpt-5.6-sol-fast",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1783555200,
-    "owned_by": "openai",
-    "name": "GPT 5.6 Sol (Fast)",
-    "description": "GPT-5.6 Sol is the flagship of OpenAI's GPT-5.6 series, its most capable model for long-horizon agentic work across coding, biology, and cybersecurity.",
-    "context_window": 1050000,
-    "max_tokens": 128000,
-    "type": "language",
-    "zdr": "some",
-    "no_training": "all",
-    "tags": [
-      "reasoning",
-      "tool-use",
-      "implicit-caching",
-      "file-input",
-      "vision",
-      "web-search",
-      "websocket-realtime",
-      "fast"
-    ],
-    "regions": ["us"],
-    "supported_specifications": ["v2", "v3", "v4"],
-    "modalities": {
-      "input": ["text", "image", "pdf"],
-      "output": ["text"]
-    },
-    "supported_parameters": [
-      "max_tokens",
-      "stop",
-      "tools",
-      "tool_choice",
-      "reasoning",
-      "include_reasoning"
-    ],
-    "temperature": false,
     "reasoning_options": [
       {
         "type": "effort",
@@ -13860,6 +13603,81 @@
         }
       ],
       "web_search": "10",
+      "service_tiers": {
+        "flex": {
+          "input": "0.000002",
+          "output": "0.00001",
+          "input_cache_read": "0.0000002",
+          "long_context": {
+            "threshold": 272000,
+            "input": "0.000004",
+            "output": "0.000015",
+            "input_cache_read": "0.0000004"
+          }
+        },
+        "priority": {
+          "input": "0.000008",
+          "output": "0.00004",
+          "input_cache_read": "0.0000008",
+          "long_context": {
+            "threshold": 272000,
+            "input": "0.000016",
+            "output": "0.00006",
+            "input_cache_read": "0.0000016"
+          }
+        }
+      },
+      "varies_by_provider": true,
+      "fast": {
+        "input": "0.000008",
+        "input_tiers": [
+          {
+            "cost": "0.000008",
+            "min": 0,
+            "max": 272000
+          },
+          {
+            "cost": "0.000016",
+            "min": 272000
+          }
+        ],
+        "output": "0.00004",
+        "output_tiers": [
+          {
+            "cost": "0.00004",
+            "min": 0,
+            "max": 272000
+          },
+          {
+            "cost": "0.00006",
+            "min": 272000
+          }
+        ],
+        "input_cache_read": "0.0000008",
+        "input_cache_read_tiers": [
+          {
+            "cost": "0.0000008",
+            "min": 0,
+            "max": 272000
+          },
+          {
+            "cost": "0.0000016",
+            "min": 272000
+          }
+        ],
+        "input_cache_write": "0.00001",
+        "input_cache_write_tiers": [
+          {
+            "cost": "0.00001",
+            "min": 0,
+            "max": 272000
+          },
+          {
+            "cost": "0.00002",
+            "min": 272000
+          }
+        ]
+      },
       "regional": {
         "us": {
           "input": "0.0000044",
@@ -13909,6 +13727,206 @@
               "cost": "0.0000055",
               "min": 272000
             }
+          ],
+          "fast": {
+            "input": "0.0000088",
+            "input_tiers": [
+              {
+                "cost": "0.0000088",
+                "min": 0,
+                "max": 272000
+              },
+              {
+                "cost": "0.0000176",
+                "min": 272000
+              }
+            ],
+            "output": "0.000044",
+            "output_tiers": [
+              {
+                "cost": "0.000044",
+                "min": 0,
+                "max": 272000
+              },
+              {
+                "cost": "0.000066",
+                "min": 272000
+              }
+            ],
+            "input_cache_read": "0.00000088",
+            "input_cache_read_tiers": [
+              {
+                "cost": "0.00000088",
+                "min": 0,
+                "max": 272000
+              },
+              {
+                "cost": "0.00000176",
+                "min": 272000
+              }
+            ],
+            "input_cache_write": "0.0000055",
+            "input_cache_write_tiers": [
+              {
+                "cost": "0.0000055",
+                "min": 0,
+                "max": 272000
+              },
+              {
+                "cost": "0.000011",
+                "min": 272000
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "openai/gpt-5.6-sol-fast",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1783555200,
+    "owned_by": "openai",
+    "name": "GPT 5.6 Sol (Fast)",
+    "description": "GPT-5.6 Sol is the flagship of OpenAI's GPT-5.6 series, its most capable model for long-horizon agentic work across coding, biology, and cybersecurity.",
+    "context_window": 1050000,
+    "max_tokens": 128000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "all",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "file-input",
+      "vision",
+      "web-search",
+      "explicit-caching",
+      "websocket-realtime",
+      "fast"
+    ],
+    "regions": ["us"],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text", "image", "pdf"],
+      "output": ["text"]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning"
+    ],
+    "temperature": false,
+    "reasoning_options": [
+      {
+        "type": "effort",
+        "values": ["none", "low", "medium", "high", "xhigh", "max"]
+      }
+    ],
+    "knowledge": "2026-02-16",
+    "pricing": {
+      "input": "0.000008",
+      "input_tiers": [
+        {
+          "cost": "0.000008",
+          "min": 0,
+          "max": 272000
+        },
+        {
+          "cost": "0.000016",
+          "min": 272000
+        }
+      ],
+      "output": "0.00004",
+      "output_tiers": [
+        {
+          "cost": "0.00004",
+          "min": 0,
+          "max": 272000
+        },
+        {
+          "cost": "0.00006",
+          "min": 272000
+        }
+      ],
+      "input_cache_read": "0.0000008",
+      "input_cache_read_tiers": [
+        {
+          "cost": "0.0000008",
+          "min": 0,
+          "max": 272000
+        },
+        {
+          "cost": "0.0000016",
+          "min": 272000
+        }
+      ],
+      "input_cache_write": "0.00001",
+      "input_cache_write_tiers": [
+        {
+          "cost": "0.00001",
+          "min": 0,
+          "max": 272000
+        },
+        {
+          "cost": "0.00002",
+          "min": 272000
+        }
+      ],
+      "web_search": "10",
+      "regional": {
+        "us": {
+          "input": "0.0000088",
+          "input_tiers": [
+            {
+              "cost": "0.0000088",
+              "min": 0,
+              "max": 272000
+            },
+            {
+              "cost": "0.0000176",
+              "min": 272000
+            }
+          ],
+          "output": "0.000044",
+          "output_tiers": [
+            {
+              "cost": "0.000044",
+              "min": 0,
+              "max": 272000
+            },
+            {
+              "cost": "0.000066",
+              "min": 272000
+            }
+          ],
+          "input_cache_read": "0.00000088",
+          "input_cache_read_tiers": [
+            {
+              "cost": "0.00000088",
+              "min": 0,
+              "max": 272000
+            },
+            {
+              "cost": "0.00000176",
+              "min": 272000
+            }
+          ],
+          "input_cache_write": "0.0000055",
+          "input_cache_write_tiers": [
+            {
+              "cost": "0.0000055",
+              "min": 0,
+              "max": 272000
+            },
+            {
+              "cost": "0.000011",
+              "min": 272000
+            }
           ]
         }
       }
@@ -13934,6 +13952,7 @@
       "tool-use",
       "vision",
       "implicit-caching",
+      "explicit-caching",
       "websocket-realtime",
       "fast"
     ],
@@ -14208,6 +14227,7 @@
       "tool-use",
       "vision",
       "implicit-caching",
+      "explicit-caching",
       "websocket-realtime",
       "fast"
     ],
@@ -14351,14 +14371,15 @@
     "zdr": "some",
     "no_training": "all",
     "tags": [
-      "fast",
       "file-input",
       "implicit-caching",
       "reasoning",
       "tool-use",
       "vision",
       "web-search",
-      "websocket-realtime"
+      "websocket-realtime",
+      "explicit-caching",
+      "fast"
     ],
     "regions": ["us"],
     "supported_specifications": ["v2", "v3", "v4"],
@@ -14614,14 +14635,15 @@
     "zdr": "some",
     "no_training": "all",
     "tags": [
-      "fast",
       "file-input",
       "implicit-caching",
       "reasoning",
       "tool-use",
       "vision",
       "web-search",
-      "websocket-realtime"
+      "websocket-realtime",
+      "explicit-caching",
+      "fast"
     ],
     "regions": ["us"],
     "supported_specifications": ["v2", "v3", "v4"],
@@ -14848,6 +14870,82 @@
     }
   },
   {
+    "id": "openai/gpt-image-2.5-flare",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1788825600,
+    "owned_by": "openai",
+    "name": "GPT Image 2.5 Flare",
+    "description": "GPT Image 2.5 Flare generates images from text and image inputs, optimized for fast, high-quality everyday image generation.",
+    "context_window": 0,
+    "max_tokens": 0,
+    "type": "image",
+    "zdr": "none",
+    "no_training": "all",
+    "tags": ["image-generation", "implicit-caching"],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text"],
+      "output": ["image"]
+    },
+    "pricing": {
+      "input": "0.000005",
+      "output": "0.00003",
+      "input_cache_read": "0.00000125"
+    }
+  },
+  {
+    "id": "openai/gpt-image-2.5-sunburst",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1788825600,
+    "owned_by": "openai",
+    "name": "GPT Image 2.5 Sunburst",
+    "description": "GPT Image 2.5 Sunburst generates and edits images from text and image inputs, with a focus on precise editing.",
+    "context_window": 0,
+    "max_tokens": 0,
+    "type": "image",
+    "zdr": "none",
+    "no_training": "all",
+    "tags": ["image-generation", "implicit-caching"],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text"],
+      "output": ["image"]
+    },
+    "pricing": {
+      "input": "0.000005",
+      "output": "0.00003",
+      "input_cache_read": "0.00000125"
+    }
+  },
+  {
+    "id": "openai/gpt-live-1",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1788998400,
+    "owned_by": "openai",
+    "name": "GPT-Live 1",
+    "description": "Our premier model for natural, expressive voice conversations with smooth interruption handling.",
+    "context_window": 0,
+    "max_tokens": 0,
+    "type": "realtime",
+    "zdr": "none",
+    "no_training": "all",
+    "tags": ["audio-input"],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text", "audio"],
+      "output": ["text", "audio"]
+    },
+    "supported_parameters": ["max_tokens", "temperature", "stop"],
+    "temperature": true,
+    "pricing": {
+      "web_search": "10",
+      "realtime_session_duration_cost_per_second": "0.0008334"
+    }
+  },
+  {
     "id": "openai/gpt-oss-120b",
     "object": "model",
     "created": 1755815280,
@@ -14933,8 +15031,8 @@
     ],
     "knowledge": "2024-10",
     "pricing": {
-      "input": "0.00000005",
-      "output": "0.0000002",
+      "input": "0.00000003",
+      "output": "0.00000014",
       "varies_by_provider": true
     }
   },
@@ -15145,7 +15243,9 @@
       "input": "0.0000006",
       "output": "0.0000024",
       "input_cache_read": "0.00000006",
-      "web_search": "10"
+      "web_search": "10",
+      "audio_input_token_cost": "0.00001",
+      "audio_output_token_cost": "0.00002"
     }
   },
   {
@@ -16157,6 +16257,49 @@
     }
   },
   {
+    "id": "sakana/fugu-max",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1788998400,
+    "owned_by": "sakana",
+    "name": "Fugu Max",
+    "description": "Fugu Max orchestrates our largest pool of models to push the cost–performance Pareto frontier. It dynamically finds efficient combinations of expert agents, aiming to improve model performance and cost efficiency together.",
+    "context_window": 1000000,
+    "max_tokens": 1000000,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "all",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "vision",
+      "implicit-caching",
+      "structured-output"
+    ],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "pricing": {
+      "input": "0.000002",
+      "output": "0.000006",
+      "input_cache_read": "0.00000025"
+    }
+  },
+  {
     "id": "sakana/fugu-ultra",
     "object": "model",
     "created": 1755815280,
@@ -16183,6 +16326,82 @@
       "tool_choice",
       "reasoning",
       "include_reasoning"
+    ],
+    "temperature": true,
+    "pricing": {
+      "input": "0.000005",
+      "input_tiers": [
+        {
+          "cost": "0.000005",
+          "min": 0,
+          "max": 272001
+        },
+        {
+          "cost": "0.00001",
+          "min": 272001
+        }
+      ],
+      "output": "0.00003",
+      "output_tiers": [
+        {
+          "cost": "0.00003",
+          "min": 0,
+          "max": 272001
+        },
+        {
+          "cost": "0.000045",
+          "min": 272001
+        }
+      ],
+      "input_cache_read": "0.0000005",
+      "input_cache_read_tiers": [
+        {
+          "cost": "0.0000005",
+          "min": 0,
+          "max": 272001
+        },
+        {
+          "cost": "0.000001",
+          "min": 272001
+        }
+      ]
+    }
+  },
+  {
+    "id": "sakana/fugu-ultra-v2",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1788998400,
+    "owned_by": "sakana",
+    "name": "Fugu Ultra v2",
+    "description": "Fugu Ultra coordinates a deeper pool of expert agents to maximize answer quality on hard, high-stakes problems. Fugu Ultra focuses on maximizing performance, for a higher cost.",
+    "context_window": 1000000,
+    "max_tokens": 1000000,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "all",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "vision",
+      "implicit-caching",
+      "structured-output"
+    ],
+    "supported_specifications": ["v2", "v3", "v4"],
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
     ],
     "temperature": true,
     "pricing": {
@@ -16354,7 +16573,7 @@
     "context_window": 2000000,
     "max_tokens": 2000000,
     "type": "language",
-    "zdr": "none",
+    "zdr": "all",
     "no_training": "all",
     "tags": [
       "reasoning",
@@ -16443,7 +16662,7 @@
     "context_window": 2000000,
     "max_tokens": 2000000,
     "type": "language",
-    "zdr": "none",
+    "zdr": "all",
     "no_training": "all",
     "tags": [
       "reasoning",
@@ -16519,7 +16738,7 @@
     "context_window": 2000000,
     "max_tokens": 2000000,
     "type": "language",
-    "zdr": "some",
+    "zdr": "all",
     "no_training": "all",
     "tags": [
       "tool-use",
@@ -16606,7 +16825,7 @@
     "context_window": 2000000,
     "max_tokens": 2000000,
     "type": "language",
-    "zdr": "none",
+    "zdr": "all",
     "no_training": "all",
     "tags": [
       "tool-use",
@@ -16674,7 +16893,7 @@
     "context_window": 2000000,
     "max_tokens": 2000000,
     "type": "language",
-    "zdr": "some",
+    "zdr": "all",
     "no_training": "all",
     "tags": [
       "reasoning",
@@ -16764,7 +16983,7 @@
     "context_window": 2000000,
     "max_tokens": 2000000,
     "type": "language",
-    "zdr": "none",
+    "zdr": "all",
     "no_training": "all",
     "tags": [
       "reasoning",
@@ -16840,7 +17059,7 @@
     "context_window": 1000000,
     "max_tokens": 1000000,
     "type": "language",
-    "zdr": "some",
+    "zdr": "all",
     "no_training": "all",
     "tags": [
       "reasoning",
@@ -16929,7 +17148,7 @@
     "context_window": 500000,
     "max_tokens": 500000,
     "type": "language",
-    "zdr": "none",
+    "zdr": "all",
     "no_training": "all",
     "tags": [
       "reasoning",
@@ -17018,7 +17237,7 @@
     "context_window": 500000,
     "max_tokens": 500000,
     "type": "language",
-    "zdr": "none",
+    "zdr": "all",
     "no_training": "all",
     "tags": ["reasoning", "tool-use", "implicit-caching", "vision"],
     "supported_specifications": ["v2", "v3", "v4"],
@@ -17100,7 +17319,7 @@
     "context_window": 256000,
     "max_tokens": 256000,
     "type": "language",
-    "zdr": "none",
+    "zdr": "all",
     "no_training": "all",
     "tags": [
       "reasoning",
@@ -17188,7 +17407,7 @@
     "context_window": 0,
     "max_tokens": 0,
     "type": "image",
-    "zdr": "none",
+    "zdr": "all",
     "no_training": "all",
     "tags": ["image-generation"],
     "supported_specifications": ["v2", "v3", "v4"],
@@ -17211,7 +17430,7 @@
     "context_window": 0,
     "max_tokens": 0,
     "type": "image",
-    "zdr": "none",
+    "zdr": "all",
     "no_training": "all",
     "tags": ["image-generation"],
     "supported_specifications": ["v2", "v3", "v4"],
@@ -17373,65 +17592,6 @@
     }
   },
   {
-    "id": "spacexai/grok-imagine-video-1.5-preview",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1780099200,
-    "owned_by": "spacexai",
-    "name": "Grok Imagine Video 1.5 Preview",
-    "description": "",
-    "context_window": 0,
-    "max_tokens": 0,
-    "type": "video",
-    "zdr": "none",
-    "no_training": "all",
-    "supported_specifications": ["v2", "v3", "v4"],
-    "modalities": {
-      "input": ["text"],
-      "output": ["video"]
-    },
-    "video_capabilities": {
-      "supported_operations": ["image-to-video"],
-      "supported_resolutions": ["480p", "720p", "1080p"],
-      "supported_aspect_ratios": [
-        "1:1",
-        "16:9",
-        "9:16",
-        "4:3",
-        "3:4",
-        "3:2",
-        "2:3"
-      ],
-      "supported_durations_seconds": [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
-      ],
-      "generate_audio": true,
-      "supported_fps": [24],
-      "input_limits": {
-        "image": {
-          "max_count": 1,
-          "supported_sources": ["url", "base64"]
-        }
-      }
-    },
-    "pricing": {
-      "video_duration_pricing": [
-        {
-          "resolution": "480p",
-          "cost_per_second": "0.08"
-        },
-        {
-          "resolution": "720p",
-          "cost_per_second": "0.14"
-        },
-        {
-          "resolution": "1080p",
-          "cost_per_second": "0.25"
-        }
-      ]
-    }
-  },
-  {
     "id": "spacexai/grok-stt",
     "object": "model",
     "created": 1755815280,
@@ -17440,7 +17600,7 @@
     "name": "Grok STT",
     "description": "Transcribe audio to text in 25 languages with batch and streaming modes.",
     "type": "transcription",
-    "zdr": "none",
+    "zdr": "all",
     "no_training": "all",
     "tags": ["websocket-transcription"],
     "supported_specifications": ["v2", "v3", "v4"],
@@ -17462,7 +17622,7 @@
     "name": "Grok TTS",
     "description": "Generate speech with 5 expressive voices, speech tags, and telephony codecs.",
     "type": "speech",
-    "zdr": "none",
+    "zdr": "all",
     "no_training": "all",
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
@@ -17485,7 +17645,7 @@
     "context_window": 0,
     "max_tokens": 0,
     "type": "realtime",
-    "zdr": "none",
+    "zdr": "all",
     "no_training": "all",
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
@@ -17510,7 +17670,7 @@
     "context_window": 0,
     "max_tokens": 0,
     "type": "realtime",
-    "zdr": "none",
+    "zdr": "all",
     "no_training": "all",
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
@@ -17802,6 +17962,7 @@
         "values": ["none", "minimal", "low", "medium", "high", "xhigh", "max"]
       }
     ],
+    "deprecated_at": 1790380800000,
     "pricing": {
       "input": "0.000001",
       "output": "0.00000405",
@@ -17858,6 +18019,7 @@
         "values": ["none", "minimal", "low", "medium", "high", "xhigh", "max"]
       }
     ],
+    "deprecated_at": 1790380800000,
     "pricing": {
       "input": "0.0000005",
       "output": "0.0000012",
@@ -17870,6 +18032,29 @@
           "input_cache_read": "0.0000001"
         }
       }
+    }
+  },
+  {
+    "id": "typesafe-ai/jev",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1789430400,
+    "owned_by": "typesafe-ai",
+    "name": "Jev",
+    "description": "Jev is TypeSafe AI’s System One evaluation model for fast, structured decisions in software. It evaluates shared state against typed questions and returns choices, scores, and boolean probabilities, supporting classification, routing, rubric-based assessment, and automated verification. Multiple questions can be evaluated in parallel within a single request.",
+    "context_window": 0,
+    "max_tokens": 0,
+    "type": "evaluation",
+    "zdr": "all",
+    "no_training": "all",
+    "supported_specifications": ["v4"],
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "pricing": {
+      "input": "0.000000042",
+      "output": "0"
     }
   },
   {
@@ -18221,48 +18406,6 @@
     }
   },
   {
-    "id": "xiaomi/mimo-v2.5-pro-ultraspeed",
-    "object": "model",
-    "created": 1755815280,
-    "released": 1780876800,
-    "owned_by": "xiaomi",
-    "name": "MiMo V2.5 Pro UltraSpeed",
-    "description": "MiMo-V2.5-Pro-UltraSpeed is Xiaomi’s ultra-fast, text-based flagship reasoning model, pairing a trillion-parameter model with a 1,048,576-token context window and generation speeds of roughly 500–1,000 tokens per second. It supports deep thinking, tool calling, streaming output, and context caching, making it well suited to latency-sensitive coding agents, quantitative analysis, real-time risk control, and scientific workflows.",
-    "context_window": 1048576,
-    "max_tokens": 131072,
-    "type": "language",
-    "zdr": "none",
-    "no_training": "none",
-    "tags": ["reasoning", "tool-use", "implicit-caching"],
-    "supported_specifications": ["v2", "v3", "v4"],
-    "modalities": {
-      "input": ["text"],
-      "output": ["text"]
-    },
-    "supported_parameters": [
-      "max_tokens",
-      "temperature",
-      "stop",
-      "tools",
-      "tool_choice",
-      "reasoning",
-      "include_reasoning"
-    ],
-    "temperature": true,
-    "reasoning_options": [
-      {
-        "type": "toggle"
-      }
-    ],
-    "knowledge": "2024-12",
-    "deprecated_at": 1788883200000,
-    "pricing": {
-      "input": "0.000001305",
-      "output": "0.00000261",
-      "input_cache_read": "0.0000000108"
-    }
-  },
-  {
     "id": "zai/glm-4.5",
     "object": "model",
     "created": 1755815280,
@@ -18466,6 +18609,7 @@
     ],
     "knowledge": "2025-04",
     "interleaved": true,
+    "deprecated_at": 1790380800000,
     "pricing": {
       "input": "0.0000006",
       "output": "0.0000022",
@@ -18678,7 +18822,8 @@
     "pricing": {
       "input": "0.0000014",
       "output": "0.0000044",
-      "input_cache_read": "0.00000026"
+      "input_cache_read": "0.00000026",
+      "varies_by_provider": true
     }
   },
   {
@@ -18778,6 +18923,7 @@
         "values": ["high", "xhigh"]
       }
     ],
+    "deprecated_at": 1790294400000,
     "pricing": {
       "input": "0.0000021",
       "output": "0.0000066",
@@ -18805,7 +18951,7 @@
     "type": "language",
     "zdr": "some",
     "no_training": "some",
-    "tags": ["reasoning", "tool-use", "implicit-caching"],
+    "tags": ["implicit-caching", "reasoning", "tool-use"],
     "regions": ["us"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
@@ -18829,9 +18975,9 @@
       }
     ],
     "pricing": {
-      "input": "0.0000007",
-      "output": "0.0000022",
-      "input_cache_read": "0.00000013",
+      "input": "0.0000014",
+      "output": "0.0000044",
+      "input_cache_read": "0.00000014",
       "varies_by_provider": true,
       "fast": {
         "input": "0.0000021",
@@ -18947,22 +19093,22 @@
     }
   },
   {
-    "id": "zai/glm-5.3-promo-50",
+    "id": "zai/glm-5.3-flashx",
     "object": "model",
     "created": 1755815280,
-    "released": 1787011200,
+    "released": 1789689600,
     "owned_by": "zai",
-    "name": "GLM 5.3 (50% off)",
-    "description": "GLM 5.3 delivers comprehensive advancements in complex software engineering and agent capabilities. It uses the same base model as GLM-5.2, with all improvements driven by post-training.",
-    "context_window": 1048576,
-    "max_tokens": 1048576,
+    "name": "GLM 5.3 FlashX",
+    "description": "GLM-5.3-FlashX is the high-speed serving option for Z.ai’s native multimodal coding model, featuring 320B total parameters, 18B activated parameters, and a 1M-token context window. Its efficient hybrid attention architecture supports visual coding, tool use, and end-to-end professional workflows across code, browsers, documents, and graphical interfaces.",
+    "context_window": 1000000,
+    "max_tokens": 131072,
     "type": "language",
-    "zdr": "all",
-    "no_training": "all",
-    "tags": ["reasoning", "tool-use", "implicit-caching"],
+    "zdr": "none",
+    "no_training": "none",
+    "tags": ["reasoning", "tool-use", "implicit-caching", "vision"],
     "supported_specifications": ["v2", "v3", "v4"],
     "modalities": {
-      "input": ["text"],
+      "input": ["text", "image"],
       "output": ["text"]
     },
     "supported_parameters": [
@@ -18976,9 +19122,9 @@
     ],
     "temperature": true,
     "pricing": {
-      "input": "0.0000007",
-      "output": "0.0000022",
-      "input_cache_read": "0.00000013"
+      "input": "0.00000037",
+      "output": "0.00000125",
+      "input_cache_read": "0.000000075"
     }
   },
   {
