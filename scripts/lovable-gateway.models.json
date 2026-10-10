@@ -1,10 +1,933 @@
 [
   {
+    "premium_output_modalities": [],
+    "id": "anthropic/claude-fable-5-1",
+    "object": "model",
+    "created": 1789344000,
+    "released": 1788220800,
+    "expiration_date": null,
+    "deprecated": false,
+    "owned_by": "anthropic",
+    "name": "Claude Fable 5.1",
+    "description": "Anthropic's most capable model for demanding reasoning and long-running agent tasks.",
+    "context_window": 1000000,
+    "max_tokens": 128000,
+    "knowledge": "2026-06",
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text",
+        "search"
+      ]
+    },
+    "supported_surfaces": [
+      "messages"
+    ],
+    "pricing": {
+      "input": {
+        "image": {
+          "billed_as": "text"
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.00001",
+              "min": 0
+            }
+          ],
+          "cache_read": {
+            "tiers": [
+              {
+                "cost": "0.00000025",
+                "min": 0
+              }
+            ]
+          },
+          "cache_write": {
+            "tiers": [
+              {
+                "cost": "0.0000125",
+                "min": 0
+              }
+            ]
+          },
+          "cache_write_1h": {
+            "tiers": [
+              {
+                "cost": "0.00002",
+                "min": 0
+              }
+            ]
+          }
+        }
+      },
+      "output": {
+        "search": {
+          "tiers": [
+            {
+              "cost": "0.01",
+              "min": 0
+            }
+          ],
+          "unit": "request"
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.00005",
+              "min": 0
+            }
+          ]
+        }
+      },
+      "service_tiers": {
+        "us": {
+          "input": {
+            "image": {
+              "billed_as": "text"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.000011",
+                  "min": 0
+                }
+              ],
+              "cache_read": {
+                "tiers": [
+                  {
+                    "cost": "0.000000275",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write": {
+                "tiers": [
+                  {
+                    "cost": "0.00001375",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write_1h": {
+                "tiers": [
+                  {
+                    "cost": "0.000022",
+                    "min": 0
+                  }
+                ]
+              }
+            }
+          },
+          "output": {
+            "search": {
+              "tiers": [
+                {
+                  "cost": "0.01",
+                  "min": 0
+                }
+              ],
+              "unit": "request"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.000055",
+                  "min": 0
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "data_retention": "provider_retained",
+    "data_retention_by_surface": {
+      "messages": "provider_retained"
+    }
+  },
+  {
+    "premium_output_modalities": [],
+    "id": "anthropic/claude-haiku-4-5",
+    "object": "model",
+    "created": 1789344000,
+    "released": 1760486400,
+    "expiration_date": null,
+    "deprecated": false,
+    "owned_by": "anthropic",
+    "name": "Claude Haiku 4.5",
+    "description": "Anthropic's fastest model for straightforward tasks.",
+    "context_window": 200000,
+    "max_tokens": 64000,
+    "knowledge": "2025-02",
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text",
+        "search"
+      ]
+    },
+    "supported_surfaces": [
+      "messages"
+    ],
+    "pricing": {
+      "input": {
+        "image": {
+          "billed_as": "text"
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.000001",
+              "min": 0
+            }
+          ],
+          "cache_read": {
+            "tiers": [
+              {
+                "cost": "0.0000001",
+                "min": 0
+              }
+            ]
+          },
+          "cache_write": {
+            "tiers": [
+              {
+                "cost": "0.00000125",
+                "min": 0
+              }
+            ]
+          },
+          "cache_write_1h": {
+            "tiers": [
+              {
+                "cost": "0.000002",
+                "min": 0
+              }
+            ]
+          }
+        }
+      },
+      "output": {
+        "search": {
+          "tiers": [
+            {
+              "cost": "0.01",
+              "min": 0
+            }
+          ],
+          "unit": "request"
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.000005",
+              "min": 0
+            }
+          ]
+        }
+      }
+    },
+    "data_retention": "provider_retained",
+    "data_retention_by_surface": {
+      "messages": "provider_retained"
+    }
+  },
+  {
+    "premium_output_modalities": [],
+    "id": "anthropic/claude-opus-5",
+    "object": "model",
+    "created": 1789344000,
+    "released": 1784851200,
+    "expiration_date": null,
+    "deprecated": false,
+    "owned_by": "anthropic",
+    "name": "Claude Opus 5",
+    "description": "Anthropic's model for complex coding and agent tasks.",
+    "context_window": 1000000,
+    "max_tokens": 128000,
+    "knowledge": "2026-05",
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text",
+        "search"
+      ]
+    },
+    "supported_surfaces": [
+      "messages"
+    ],
+    "pricing": {
+      "input": {
+        "image": {
+          "billed_as": "text"
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.000005",
+              "min": 0
+            }
+          ],
+          "cache_read": {
+            "tiers": [
+              {
+                "cost": "0.0000005",
+                "min": 0
+              }
+            ]
+          },
+          "cache_write": {
+            "tiers": [
+              {
+                "cost": "0.00000625",
+                "min": 0
+              }
+            ]
+          },
+          "cache_write_1h": {
+            "tiers": [
+              {
+                "cost": "0.00001",
+                "min": 0
+              }
+            ]
+          }
+        }
+      },
+      "output": {
+        "search": {
+          "tiers": [
+            {
+              "cost": "0.01",
+              "min": 0
+            }
+          ],
+          "unit": "request"
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.000025",
+              "min": 0
+            }
+          ]
+        }
+      },
+      "service_tiers": {
+        "fast": {
+          "input": {
+            "image": {
+              "billed_as": "text"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.00001",
+                  "min": 0
+                }
+              ],
+              "cache_read": {
+                "tiers": [
+                  {
+                    "cost": "0.000001",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write": {
+                "tiers": [
+                  {
+                    "cost": "0.0000125",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write_1h": {
+                "tiers": [
+                  {
+                    "cost": "0.00002",
+                    "min": 0
+                  }
+                ]
+              }
+            }
+          },
+          "output": {
+            "search": {
+              "tiers": [
+                {
+                  "cost": "0.01",
+                  "min": 0
+                }
+              ],
+              "unit": "request"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.00005",
+                  "min": 0
+                }
+              ]
+            }
+          }
+        },
+        "fast_us": {
+          "input": {
+            "image": {
+              "billed_as": "text"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.000011",
+                  "min": 0
+                }
+              ],
+              "cache_read": {
+                "tiers": [
+                  {
+                    "cost": "0.0000011",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write": {
+                "tiers": [
+                  {
+                    "cost": "0.00001375",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write_1h": {
+                "tiers": [
+                  {
+                    "cost": "0.000022",
+                    "min": 0
+                  }
+                ]
+              }
+            }
+          },
+          "output": {
+            "search": {
+              "tiers": [
+                {
+                  "cost": "0.01",
+                  "min": 0
+                }
+              ],
+              "unit": "request"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.000055",
+                  "min": 0
+                }
+              ]
+            }
+          }
+        },
+        "us": {
+          "input": {
+            "image": {
+              "billed_as": "text"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.0000055",
+                  "min": 0
+                }
+              ],
+              "cache_read": {
+                "tiers": [
+                  {
+                    "cost": "0.00000055",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write": {
+                "tiers": [
+                  {
+                    "cost": "0.000006875",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write_1h": {
+                "tiers": [
+                  {
+                    "cost": "0.000011",
+                    "min": 0
+                  }
+                ]
+              }
+            }
+          },
+          "output": {
+            "search": {
+              "tiers": [
+                {
+                  "cost": "0.01",
+                  "min": 0
+                }
+              ],
+              "unit": "request"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.0000275",
+                  "min": 0
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "data_retention": "provider_retained",
+    "data_retention_by_surface": {
+      "messages": "provider_retained"
+    }
+  },
+  {
+    "premium_output_modalities": [],
+    "id": "anthropic/claude-opus-5-5",
+    "object": "model",
+    "created": 1790035200,
+    "released": 1790035200,
+    "expiration_date": null,
+    "deprecated": false,
+    "owned_by": "anthropic",
+    "name": "Claude Opus 5.5",
+    "description": "Anthropic's model for long-running agentic coding and knowledge work.",
+    "context_window": 1000000,
+    "max_tokens": 128000,
+    "knowledge": "2026-06",
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text",
+        "search"
+      ]
+    },
+    "supported_surfaces": [
+      "messages"
+    ],
+    "pricing": {
+      "input": {
+        "image": {
+          "billed_as": "text"
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.000004",
+              "min": 0
+            }
+          ],
+          "cache_read": {
+            "tiers": [
+              {
+                "cost": "0.0000002",
+                "min": 0
+              }
+            ]
+          },
+          "cache_write": {
+            "tiers": [
+              {
+                "cost": "0.000005",
+                "min": 0
+              }
+            ]
+          },
+          "cache_write_1h": {
+            "tiers": [
+              {
+                "cost": "0.000008",
+                "min": 0
+              }
+            ]
+          }
+        }
+      },
+      "output": {
+        "search": {
+          "tiers": [
+            {
+              "cost": "0.01",
+              "min": 0
+            }
+          ],
+          "unit": "request"
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.00002",
+              "min": 0
+            }
+          ]
+        }
+      },
+      "service_tiers": {
+        "fast": {
+          "input": {
+            "image": {
+              "billed_as": "text"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.000008",
+                  "min": 0
+                }
+              ],
+              "cache_read": {
+                "tiers": [
+                  {
+                    "cost": "0.0000004",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write": {
+                "tiers": [
+                  {
+                    "cost": "0.00001",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write_1h": {
+                "tiers": [
+                  {
+                    "cost": "0.000016",
+                    "min": 0
+                  }
+                ]
+              }
+            }
+          },
+          "output": {
+            "search": {
+              "tiers": [
+                {
+                  "cost": "0.01",
+                  "min": 0
+                }
+              ],
+              "unit": "request"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.00004",
+                  "min": 0
+                }
+              ]
+            }
+          }
+        },
+        "fast_us": {
+          "input": {
+            "image": {
+              "billed_as": "text"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.0000088",
+                  "min": 0
+                }
+              ],
+              "cache_read": {
+                "tiers": [
+                  {
+                    "cost": "0.00000044",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write": {
+                "tiers": [
+                  {
+                    "cost": "0.000011",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write_1h": {
+                "tiers": [
+                  {
+                    "cost": "0.0000176",
+                    "min": 0
+                  }
+                ]
+              }
+            }
+          },
+          "output": {
+            "search": {
+              "tiers": [
+                {
+                  "cost": "0.01",
+                  "min": 0
+                }
+              ],
+              "unit": "request"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.000044",
+                  "min": 0
+                }
+              ]
+            }
+          }
+        },
+        "us": {
+          "input": {
+            "image": {
+              "billed_as": "text"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.0000044",
+                  "min": 0
+                }
+              ],
+              "cache_read": {
+                "tiers": [
+                  {
+                    "cost": "0.00000022",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write": {
+                "tiers": [
+                  {
+                    "cost": "0.0000055",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write_1h": {
+                "tiers": [
+                  {
+                    "cost": "0.0000088",
+                    "min": 0
+                  }
+                ]
+              }
+            }
+          },
+          "output": {
+            "search": {
+              "tiers": [
+                {
+                  "cost": "0.01",
+                  "min": 0
+                }
+              ],
+              "unit": "request"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.000022",
+                  "min": 0
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "data_retention": "provider_retained",
+    "data_retention_by_surface": {
+      "messages": "provider_retained"
+    }
+  },
+  {
+    "premium_output_modalities": [],
+    "id": "anthropic/claude-sonnet-5",
+    "object": "model",
+    "created": 1789344000,
+    "released": 1782777600,
+    "expiration_date": null,
+    "deprecated": false,
+    "owned_by": "anthropic",
+    "name": "Claude Sonnet 5",
+    "description": "Anthropic's model balancing speed and intelligence.",
+    "context_window": 1000000,
+    "max_tokens": 128000,
+    "knowledge": "2026-01",
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text",
+        "search"
+      ]
+    },
+    "supported_surfaces": [
+      "messages"
+    ],
+    "pricing": {
+      "input": {
+        "image": {
+          "billed_as": "text"
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.000002",
+              "min": 0
+            }
+          ],
+          "cache_read": {
+            "tiers": [
+              {
+                "cost": "0.0000002",
+                "min": 0
+              }
+            ]
+          },
+          "cache_write": {
+            "tiers": [
+              {
+                "cost": "0.0000025",
+                "min": 0
+              }
+            ]
+          },
+          "cache_write_1h": {
+            "tiers": [
+              {
+                "cost": "0.000004",
+                "min": 0
+              }
+            ]
+          }
+        }
+      },
+      "output": {
+        "search": {
+          "tiers": [
+            {
+              "cost": "0.01",
+              "min": 0
+            }
+          ],
+          "unit": "request"
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.00001",
+              "min": 0
+            }
+          ]
+        }
+      },
+      "service_tiers": {
+        "us": {
+          "input": {
+            "image": {
+              "billed_as": "text"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.0000022",
+                  "min": 0
+                }
+              ],
+              "cache_read": {
+                "tiers": [
+                  {
+                    "cost": "0.00000022",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write": {
+                "tiers": [
+                  {
+                    "cost": "0.00000275",
+                    "min": 0
+                  }
+                ]
+              },
+              "cache_write_1h": {
+                "tiers": [
+                  {
+                    "cost": "0.0000044",
+                    "min": 0
+                  }
+                ]
+              }
+            }
+          },
+          "output": {
+            "search": {
+              "tiers": [
+                {
+                  "cost": "0.01",
+                  "min": 0
+                }
+              ],
+              "unit": "request"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.000011",
+                  "min": 0
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "data_retention": "provider_retained",
+    "data_retention_by_surface": {
+      "messages": "provider_retained"
+    }
+  },
+  {
+    "premium_output_modalities": [],
     "id": "google/gemini-2.5-flash",
     "object": "model",
     "created": 1779667200,
     "released": 1742428800,
-    "expiration_date": null,
+    "expiration_date": 1792454400,
     "deprecated": true,
     "owned_by": "google",
     "name": "Gemini 2.5 Flash",
@@ -23,6 +946,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions"
+    ],
     "pricing": {
       "input": {
         "audio": {
@@ -122,14 +1048,19 @@
           }
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/gemini-2.5-flash-image",
     "object": "model",
     "created": 1779667200,
     "released": 1756166400,
-    "expiration_date": null,
+    "expiration_date": 1805068800,
     "deprecated": true,
     "owned_by": "google",
     "name": "Gemini 2.5 Flash Image",
@@ -148,6 +1079,10 @@
         "image"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "image-generation"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -188,14 +1123,20 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "image-generation": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/gemini-2.5-flash-lite",
     "object": "model",
     "created": 1779667200,
     "released": 1750118400,
-    "expiration_date": null,
+    "expiration_date": 1792454400,
     "deprecated": true,
     "owned_by": "google",
     "name": "Gemini 2.5 Flash Lite",
@@ -214,6 +1155,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions"
+    ],
     "pricing": {
       "input": {
         "audio": {
@@ -313,9 +1257,14 @@
           }
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/gemini-2.5-flash-lite-preview-tts",
     "object": "model",
     "created": 1783382400,
@@ -335,6 +1284,9 @@
         "audio"
       ]
     },
+    "supported_surfaces": [
+      "speech"
+    ],
     "pricing": {
       "input": {
         "text": {
@@ -356,9 +1308,14 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "speech": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/gemini-2.5-flash-tts",
     "object": "model",
     "created": 1783382400,
@@ -379,6 +1336,9 @@
         "audio"
       ]
     },
+    "supported_surfaces": [
+      "speech"
+    ],
     "pricing": {
       "input": {
         "text": {
@@ -400,14 +1360,19 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "speech": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/gemini-2.5-pro",
     "object": "model",
     "created": 1779667200,
     "released": 1742428800,
-    "expiration_date": null,
+    "expiration_date": 1792454400,
     "deprecated": true,
     "owned_by": "google",
     "name": "Gemini 2.5 Pro",
@@ -426,6 +1391,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions"
+    ],
     "pricing": {
       "input": {
         "audio": {
@@ -575,9 +1543,16 @@
           }
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero"
     }
   },
   {
+    "premium_output_modalities": [
+      "audio"
+    ],
     "id": "google/gemini-2.5-pro-tts",
     "object": "model",
     "created": 1783382400,
@@ -598,6 +1573,9 @@
         "audio"
       ]
     },
+    "supported_surfaces": [
+      "speech"
+    ],
     "pricing": {
       "input": {
         "text": {
@@ -619,9 +1597,14 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "speech": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/gemini-3-flash-preview",
     "object": "model",
     "created": 1779667200,
@@ -645,6 +1628,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions"
+    ],
     "pricing": {
       "input": {
         "audio": {
@@ -744,9 +1730,17 @@
           }
         }
       }
+    },
+    "data_retention": "provider_retained",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "interactions": "provider_retained"
     }
   },
   {
+    "premium_output_modalities": [
+      "image"
+    ],
     "id": "google/gemini-3-pro-image",
     "object": "model",
     "created": 1782086400,
@@ -770,6 +1764,10 @@
         "image"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "image-generation"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -818,15 +1816,21 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "image-generation": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/gemini-3.1-flash-image",
     "object": "model",
     "created": 1782086400,
     "released": 1779926400,
     "expiration_date": null,
-    "deprecated": false,
+    "deprecated": true,
     "owned_by": "google",
     "name": "Gemini 3.1 Flash Image",
     "description": "Fast image generation and editing model with pro-level quality.",
@@ -844,6 +1848,10 @@
         "image"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "image-generation"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -892,9 +1900,15 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "image-generation": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/gemini-3.1-flash-lite",
     "object": "model",
     "created": 1781654400,
@@ -918,6 +1932,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions"
+    ],
     "pricing": {
       "input": {
         "audio": {
@@ -1017,9 +2034,15 @@
           }
         }
       }
+    },
+    "data_retention": "provider_retained",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "interactions": "provider_retained"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/gemini-3.1-flash-lite-image",
     "object": "model",
     "created": 1783296000,
@@ -1042,6 +2065,9 @@
         "image"
       ]
     },
+    "supported_surfaces": [
+      "image-generation"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -1090,9 +2116,16 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "image-generation": "zero"
     }
   },
   {
+    "premium_output_modalities": [
+      "audio"
+    ],
     "id": "google/gemini-3.1-flash-tts-preview",
     "object": "model",
     "created": 1783382400,
@@ -1113,6 +2146,9 @@
         "audio"
       ]
     },
+    "supported_surfaces": [
+      "speech"
+    ],
     "pricing": {
       "input": {
         "text": {
@@ -1134,9 +2170,14 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "speech": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/gemini-3.1-pro-preview",
     "object": "model",
     "created": 1779667200,
@@ -1160,6 +2201,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions"
+    ],
     "pricing": {
       "input": {
         "audio": {
@@ -1309,9 +2353,15 @@
           }
         }
       }
+    },
+    "data_retention": "provider_retained",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "interactions": "provider_retained"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/gemini-3.5-flash",
     "object": "model",
     "created": 1779667200,
@@ -1335,6 +2385,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions"
+    ],
     "pricing": {
       "input": {
         "audio": {
@@ -1434,18 +2487,85 @@
           }
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero"
     }
   },
   {
+    "premium_output_modalities": [
+      "text"
+    ],
+    "id": "google/gemini-3.5-transcribe",
+    "object": "model",
+    "created": 1787875200,
+    "released": 1787702400,
+    "expiration_date": null,
+    "deprecated": false,
+    "owned_by": "google",
+    "name": "Gemini 3.5 Transcribe",
+    "description": "Google's speech-to-text model with automatic language detection across 85+ languages and smart handling of filler words and self-corrections.",
+    "context_window": 16000,
+    "max_tokens": 16000,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_surfaces": [
+      "transcription"
+    ],
+    "pricing": {
+      "input": {
+        "audio": {
+          "tiers": [
+            {
+              "cost": "0.000002",
+              "min": 0
+            }
+          ]
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.000002",
+              "min": 0
+            }
+          ]
+        }
+      },
+      "output": {
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.000012",
+              "min": 0
+            }
+          ]
+        }
+      }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "transcription": "zero"
+    }
+  },
+  {
+    "premium_output_modalities": [],
     "id": "google/gemini-3.6-flash",
     "object": "model",
     "created": 1784505600,
     "released": 1784592000,
-    "expiration_date": null,
-    "deprecated": false,
+    "expiration_date": 1795046400,
+    "deprecated": true,
     "owned_by": "google",
     "name": "Gemini 3.6 Flash",
-    "description": "Latest-generation Gemini Flash model for fast coding, reasoning, and agentic workflows.",
+    "description": "Gemini 3.6 Flash model for fast coding, reasoning, and agentic workflows.",
     "context_window": 1000000,
     "max_tokens": 64000,
     "knowledge": "2026-03",
@@ -1460,6 +2580,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions"
+    ],
     "pricing": {
       "input": {
         "audio": {
@@ -1559,18 +2682,24 @@
           }
         }
       }
+    },
+    "data_retention": "provider_retained",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "interactions": "provider_retained"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/gemini-3.7-flash",
     "object": "model",
     "created": 1786752000,
     "released": 1786752000,
-    "expiration_date": null,
-    "deprecated": false,
+    "expiration_date": 1801094400,
+    "deprecated": true,
     "owned_by": "google",
     "name": "Gemini 3.7 Flash",
-    "description": "Latest-generation Gemini Flash model for fast coding, reasoning, and agentic workflows.",
+    "description": "Gemini 3.7 Flash model for fast coding, reasoning, and agentic workflows.",
     "context_window": 1000000,
     "max_tokens": 64000,
     "knowledge": "2026-03",
@@ -1585,6 +2714,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions"
+    ],
     "pricing": {
       "input": {
         "audio": {
@@ -1684,9 +2816,148 @@
           }
         }
       }
+    },
+    "data_retention": "provider_retained",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "interactions": "provider_retained"
     }
   },
   {
+    "premium_output_modalities": [],
+    "id": "google/gemini-3.8-flash",
+    "object": "model",
+    "created": 1788739200,
+    "released": 1788307200,
+    "expiration_date": null,
+    "deprecated": false,
+    "owned_by": "google",
+    "name": "Gemini 3.8 Flash",
+    "description": "Latest-generation Gemini Flash model for fast coding, reasoning, and agentic workflows.",
+    "context_window": 1048576,
+    "max_tokens": 65536,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_surfaces": [
+      "chat-completions"
+    ],
+    "pricing": {
+      "input": {
+        "audio": {
+          "tiers": [
+            {
+              "cost": "0.00000075",
+              "min": 0
+            }
+          ]
+        },
+        "image": {
+          "billed_as": "text"
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.00000075",
+              "min": 0
+            }
+          ],
+          "cache_read": {
+            "tiers": [
+              {
+                "cost": "0.000000075",
+                "min": 0
+              }
+            ]
+          }
+        },
+        "video": {
+          "tiers": [
+            {
+              "cost": "0.00000075",
+              "min": 0
+            }
+          ]
+        }
+      },
+      "output": {
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.00000375",
+              "min": 0
+            }
+          ]
+        }
+      },
+      "service_tiers": {
+        "priority": {
+          "input": {
+            "audio": {
+              "tiers": [
+                {
+                  "cost": "0.00000135",
+                  "min": 0
+                }
+              ]
+            },
+            "image": {
+              "billed_as": "text"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.00000135",
+                  "min": 0
+                }
+              ],
+              "cache_read": {
+                "tiers": [
+                  {
+                    "cost": "0.000000135",
+                    "min": 0
+                  }
+                ]
+              }
+            },
+            "video": {
+              "tiers": [
+                {
+                  "cost": "0.00000135",
+                  "min": 0
+                }
+              ]
+            }
+          },
+          "output": {
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.00000675",
+                  "min": 0
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "data_retention": "provider_retained",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "interactions": "provider_retained"
+    }
+  },
+  {
+    "premium_output_modalities": [],
     "id": "google/gemini-embedding-001",
     "object": "model",
     "created": 1779667200,
@@ -1707,6 +2978,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "embeddings"
+    ],
     "pricing": {
       "input": {
         "text": {
@@ -1718,9 +2992,16 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "embeddings": "zero"
     }
   },
   {
+    "premium_output_modalities": [
+      "text"
+    ],
     "id": "google/gemini-embedding-2",
     "object": "model",
     "created": 1781136000,
@@ -1744,6 +3025,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "embeddings"
+    ],
     "pricing": {
       "input": {
         "audio": {
@@ -1779,9 +3063,91 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "embeddings": "zero"
     }
   },
   {
+    "premium_output_modalities": [
+      "video"
+    ],
+    "id": "google/gemini-omni-1.1-flash",
+    "object": "model",
+    "created": 1787788800,
+    "released": 1787788800,
+    "expiration_date": null,
+    "deprecated": false,
+    "owned_by": "google",
+    "name": "Gemini Omni 1.1 Flash",
+    "description": "Latest video generation model: fast and low-cost, 360p drafts up to 4K, 3-10 second clips, video editing and extension from inline inputs.",
+    "context_window": 0,
+    "max_tokens": 0,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "video"
+      ]
+    },
+    "supported_surfaces": [
+      "videos"
+    ],
+    "pricing": {
+      "input": {
+        "audio": {
+          "tiers": [
+            {
+              "cost": "0.0000015",
+              "min": 0
+            }
+          ]
+        },
+        "image": {
+          "tiers": [
+            {
+              "cost": "0.0000015",
+              "min": 0
+            }
+          ]
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.0000015",
+              "min": 0
+            }
+          ]
+        },
+        "video": {
+          "tiers": [
+            {
+              "cost": "0.0000015",
+              "min": 0
+            }
+          ]
+        }
+      },
+      "video_duration": {
+        "720p": {
+          "cost_per_second": "0.0000175"
+        }
+      }
+    },
+    "data_retention": "provider_retained",
+    "data_retention_by_surface": {
+      "videos": "provider_retained"
+    }
+  },
+  {
+    "premium_output_modalities": [
+      "video"
+    ],
     "id": "google/veo-3.1",
     "object": "model",
     "created": 1785715200,
@@ -1802,6 +3168,9 @@
         "video"
       ]
     },
+    "supported_surfaces": [
+      "videos"
+    ],
     "pricing": {
       "video_duration": {
         "1080p": {
@@ -1814,9 +3183,14 @@
           "cost_per_second": "0.4"
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "videos": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/veo-3.1-fast",
     "object": "model",
     "created": 1785715200,
@@ -1837,6 +3211,9 @@
         "video"
       ]
     },
+    "supported_surfaces": [
+      "videos"
+    ],
     "pricing": {
       "video_duration": {
         "1080p": {
@@ -1849,9 +3226,14 @@
           "cost_per_second": "0.1"
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "videos": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "google/veo-3.1-lite",
     "object": "model",
     "created": 1785715200,
@@ -1872,6 +3254,9 @@
         "video"
       ]
     },
+    "supported_surfaces": [
+      "videos"
+    ],
     "pricing": {
       "video_duration": {
         "1080p": {
@@ -1881,9 +3266,14 @@
           "cost_per_second": "0.05"
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "videos": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/chat-latest",
     "object": "model",
     "created": 1787270400,
@@ -1904,6 +3294,10 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -1936,15 +3330,21 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/gpt-4o-mini-transcribe",
     "object": "model",
     "created": 1781568000,
     "released": 1742428800,
-    "expiration_date": null,
-    "deprecated": false,
+    "expiration_date": 1803600000,
+    "deprecated": true,
     "owned_by": "openai",
     "name": "GPT-4o mini Transcribe",
     "description": "Fast, cost-efficient OpenAI speech-to-text model for dictation, voice input, and high-volume transcription.",
@@ -1959,6 +3359,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "transcription"
+    ],
     "pricing": {
       "input": {
         "audio": {
@@ -1988,15 +3391,20 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "transcription": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/gpt-4o-mini-tts",
     "object": "model",
     "created": 1781568000,
     "released": 1742428800,
-    "expiration_date": null,
-    "deprecated": false,
+    "expiration_date": 1799193600,
+    "deprecated": true,
     "owned_by": "openai",
     "name": "GPT-4o mini TTS",
     "description": "OpenAI text-to-speech model with instructions-steerable delivery (tone, accent, pacing) for natural-sounding audio.",
@@ -2010,6 +3418,9 @@
         "audio"
       ]
     },
+    "supported_surfaces": [
+      "speech"
+    ],
     "pricing": {
       "input": {
         "text": {
@@ -2031,15 +3442,22 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "speech": "zero"
     }
   },
   {
+    "premium_output_modalities": [
+      "text"
+    ],
     "id": "openai/gpt-4o-transcribe",
     "object": "model",
     "created": 1781654400,
     "released": 1742428800,
-    "expiration_date": null,
-    "deprecated": false,
+    "expiration_date": 1803600000,
+    "deprecated": true,
     "owned_by": "openai",
     "name": "GPT-4o Transcribe",
     "description": "Higher-accuracy OpenAI speech-to-text model for noisy audio, accents, and specialist vocabulary.",
@@ -2054,6 +3472,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "transcription"
+    ],
     "pricing": {
       "input": {
         "audio": {
@@ -2083,14 +3504,19 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "transcription": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/gpt-5",
     "object": "model",
     "created": 1779667200,
     "released": 1754524800,
-    "expiration_date": null,
+    "expiration_date": 1796947200,
     "deprecated": true,
     "owned_by": "openai",
     "name": "GPT-5",
@@ -2107,6 +3533,10 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -2174,14 +3604,20 @@
           }
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/gpt-5-mini",
     "object": "model",
     "created": 1779667200,
     "released": 1754524800,
-    "expiration_date": null,
+    "expiration_date": 1796947200,
     "deprecated": true,
     "owned_by": "openai",
     "name": "GPT-5 mini",
@@ -2198,6 +3634,10 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -2265,15 +3705,21 @@
           }
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/gpt-5-nano",
     "object": "model",
     "created": 1779667200,
     "released": 1754524800,
-    "expiration_date": null,
-    "deprecated": false,
+    "expiration_date": 1796947200,
+    "deprecated": true,
     "owned_by": "openai",
     "name": "GPT-5 nano",
     "description": "Most compact GPT-5 model for speed and cost efficiency.",
@@ -2289,6 +3735,10 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -2321,9 +3771,15 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/gpt-5.2",
     "object": "model",
     "created": 1779667200,
@@ -2345,6 +3801,10 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -2412,9 +3872,15 @@
           }
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/gpt-5.4",
     "object": "model",
     "created": 1779667200,
@@ -2436,6 +3902,10 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -2518,9 +3988,15 @@
           }
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/gpt-5.4-mini",
     "object": "model",
     "created": 1779667200,
@@ -2542,6 +4018,10 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -2609,15 +4089,21 @@
           }
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/gpt-5.4-nano",
     "object": "model",
     "created": 1779667200,
     "released": 1773705600,
-    "expiration_date": null,
-    "deprecated": false,
+    "expiration_date": 1806537600,
+    "deprecated": true,
     "owned_by": "openai",
     "name": "GPT-5.4 Nano",
     "description": "Fastest and lowest-cost GPT-5.4 variant for high-volume tasks.",
@@ -2633,6 +4119,10 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -2665,9 +4155,15 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/gpt-5.4-pro",
     "object": "model",
     "created": 1779667200,
@@ -2689,6 +4185,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -2736,9 +4235,16 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [
+      "text"
+    ],
     "id": "openai/gpt-5.5",
     "object": "model",
     "created": 1779667200,
@@ -2760,6 +4266,10 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -2842,9 +4352,15 @@
           }
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/gpt-5.5-pro",
     "object": "model",
     "created": 1783382400,
@@ -2866,6 +4382,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -2913,9 +4432,14 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/gpt-5.6-luna",
     "object": "model",
     "created": 1784073600,
@@ -2937,6 +4461,10 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -3019,9 +4547,17 @@
           }
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [
+      "text"
+    ],
     "id": "openai/gpt-5.6-sol",
     "object": "model",
     "created": 1783987200,
@@ -3043,6 +4579,10 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -3125,9 +4665,15 @@
           }
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/gpt-5.6-terra",
     "object": "model",
     "created": 1784073600,
@@ -3149,6 +4695,10 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -3231,14 +4781,310 @@
           }
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
     }
   },
   {
+    "premium_output_modalities": [
+      "text"
+    ],
+    "id": "openai/gpt-6-astra",
+    "object": "model",
+    "created": 1788739200,
+    "released": 1788480000,
+    "expiration_date": null,
+    "deprecated": false,
+    "owned_by": "openai",
+    "name": "GPT-6 Astra",
+    "description": "OpenAI's most capable model for complex reasoning, coding, research, and document creation.",
+    "context_window": 1050000,
+    "max_tokens": 128000,
+    "knowledge": "2026-04-30",
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
+    "pricing": {
+      "input": {
+        "image": {
+          "billed_as": "text"
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.00001",
+              "min": 0,
+              "max": 272000
+            },
+            {
+              "cost": "0.00002",
+              "min": 272000
+            }
+          ],
+          "cache_read": {
+            "tiers": [
+              {
+                "cost": "0.000001",
+                "min": 0,
+                "max": 272000
+              },
+              {
+                "cost": "0.000002",
+                "min": 272000
+              }
+            ]
+          },
+          "cache_write": {
+            "tiers": [
+              {
+                "cost": "0.0000125",
+                "min": 0,
+                "max": 272000
+              },
+              {
+                "cost": "0.000025",
+                "min": 272000
+              }
+            ]
+          }
+        }
+      },
+      "output": {
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.00005",
+              "min": 0,
+              "max": 272000
+            },
+            {
+              "cost": "0.000075",
+              "min": 272000
+            }
+          ]
+        }
+      },
+      "service_tiers": {
+        "priority": {
+          "input": {
+            "image": {
+              "billed_as": "text"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.00002",
+                  "min": 0,
+                  "max": 272000
+                },
+                {
+                  "cost": "0.00004",
+                  "min": 272000
+                }
+              ],
+              "cache_read": {
+                "tiers": [
+                  {
+                    "cost": "0.000002",
+                    "min": 0,
+                    "max": 272000
+                  },
+                  {
+                    "cost": "0.000004",
+                    "min": 272000
+                  }
+                ]
+              },
+              "cache_write": {
+                "tiers": [
+                  {
+                    "cost": "0.000025",
+                    "min": 0,
+                    "max": 272000
+                  },
+                  {
+                    "cost": "0.00005",
+                    "min": 272000
+                  }
+                ]
+              }
+            }
+          },
+          "output": {
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.0001",
+                  "min": 0,
+                  "max": 272000
+                },
+                {
+                  "cost": "0.00015",
+                  "min": 272000
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
+    }
+  },
+  {
+    "premium_output_modalities": [],
+    "id": "openai/gpt-6-luna",
+    "object": "model",
+    "created": 1790035200,
+    "released": 1790035200,
+    "expiration_date": null,
+    "deprecated": false,
+    "owned_by": "openai",
+    "name": "GPT-6 Luna",
+    "description": "Low-cost GPT-6 model from OpenAI.",
+    "context_window": 1050000,
+    "max_tokens": 128000,
+    "knowledge": "2026-05-18",
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_surfaces": [
+      "chat-completions",
+      "responses"
+    ],
+    "pricing": {
+      "input": {
+        "image": {
+          "billed_as": "text"
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.0000001",
+              "min": 0,
+              "max": 272000
+            },
+            {
+              "cost": "0.0000002",
+              "min": 272000
+            }
+          ],
+          "cache_read": {
+            "tiers": [
+              {
+                "cost": "0.00000001",
+                "min": 0,
+                "max": 272000
+              },
+              {
+                "cost": "0.00000002",
+                "min": 272000
+              }
+            ]
+          }
+        }
+      },
+      "output": {
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.0000005",
+              "min": 0,
+              "max": 272000
+            },
+            {
+              "cost": "0.00000075",
+              "min": 272000
+            }
+          ]
+        }
+      },
+      "service_tiers": {
+        "priority": {
+          "input": {
+            "image": {
+              "billed_as": "text"
+            },
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.0000002",
+                  "min": 0,
+                  "max": 272000
+                },
+                {
+                  "cost": "0.0000004",
+                  "min": 272000
+                }
+              ],
+              "cache_read": {
+                "tiers": [
+                  {
+                    "cost": "0.00000002",
+                    "min": 0,
+                    "max": 272000
+                  },
+                  {
+                    "cost": "0.00000004",
+                    "min": 272000
+                  }
+                ]
+              }
+            }
+          },
+          "output": {
+            "text": {
+              "tiers": [
+                {
+                  "cost": "0.000001",
+                  "min": 0,
+                  "max": 272000
+                },
+                {
+                  "cost": "0.0000015",
+                  "min": 272000
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "chat-completions": "zero",
+      "responses": "zero"
+    }
+  },
+  {
+    "premium_output_modalities": [],
     "id": "openai/gpt-image-1-mini",
     "object": "model",
     "created": 1779753600,
     "released": 1759708800,
-    "expiration_date": null,
+    "expiration_date": 1796083200,
     "deprecated": true,
     "owned_by": "openai",
     "name": "GPT Image 1 Mini",
@@ -3254,6 +5100,10 @@
         "image"
       ]
     },
+    "supported_surfaces": [
+      "image-generation",
+      "image-edit"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -3283,9 +5133,17 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "image-edit": "zero",
+      "image-generation": "zero"
     }
   },
   {
+    "premium_output_modalities": [
+      "image"
+    ],
     "id": "openai/gpt-image-2",
     "object": "model",
     "created": 1779753600,
@@ -3306,6 +5164,10 @@
         "image"
       ]
     },
+    "supported_surfaces": [
+      "image-generation",
+      "image-edit"
+    ],
     "pricing": {
       "input": {
         "image": {
@@ -3335,9 +5197,124 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "image-edit": "zero",
+      "image-generation": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
+    "id": "openai/gpt-image-2.5-flare",
+    "object": "model",
+    "created": 1788912000,
+    "released": 1788825600,
+    "expiration_date": null,
+    "deprecated": false,
+    "owned_by": "openai",
+    "name": "GPT Image 2.5 Flare",
+    "description": "Latency-first OpenAI image generation and editing model.",
+    "context_window": 0,
+    "max_tokens": 0,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "supported_surfaces": [
+      "image-generation",
+      "image-edit"
+    ],
+    "pricing": {
+      "input": {
+        "image": {
+          "tiers": [
+            {
+              "cost": "0.000008",
+              "min": 0
+            }
+          ]
+        },
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.000005",
+              "min": 0
+            }
+          ]
+        }
+      },
+      "output": {
+        "image": {
+          "tiers": [
+            {
+              "cost": "0.00003",
+              "min": 0
+            }
+          ]
+        }
+      }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "image-edit": "zero",
+      "image-generation": "zero"
+    }
+  },
+  {
+    "premium_output_modalities": [
+      "text"
+    ],
+    "id": "openai/gpt-transcribe",
+    "object": "model",
+    "created": 1789516800,
+    "released": 1785196800,
+    "expiration_date": null,
+    "deprecated": false,
+    "owned_by": "openai",
+    "name": "GPT Transcribe",
+    "description": "Latest-generation OpenAI speech-to-text model with context, keyword, and language hints for higher accuracy on names and specialist vocabulary.",
+    "context_window": 16000,
+    "max_tokens": 2000,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_surfaces": [
+      "transcription"
+    ],
+    "pricing": {
+      "input": {
+        "audio": {
+          "tiers": [
+            {
+              "cost": "0.000075",
+              "min": 0
+            }
+          ],
+          "unit": "second"
+        }
+      }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "transcription": "zero"
+    }
+  },
+  {
+    "premium_output_modalities": [
+      "text"
+    ],
     "id": "openai/text-embedding-3-large",
     "object": "model",
     "created": 1779667200,
@@ -3357,6 +5334,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "embeddings"
+    ],
     "pricing": {
       "input": {
         "text": {
@@ -3368,9 +5348,14 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "embeddings": "zero"
     }
   },
   {
+    "premium_output_modalities": [],
     "id": "openai/text-embedding-3-small",
     "object": "model",
     "created": 1779667200,
@@ -3390,6 +5375,9 @@
         "text"
       ]
     },
+    "supported_surfaces": [
+      "embeddings"
+    ],
     "pricing": {
       "input": {
         "text": {
@@ -3401,6 +5389,61 @@
           ]
         }
       }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "embeddings": "zero"
+    }
+  },
+  {
+    "premium_output_modalities": [],
+    "id": "typesafe/jev-latest",
+    "object": "model",
+    "created": 1789689600,
+    "released": 1789689600,
+    "expiration_date": null,
+    "deprecated": false,
+    "owned_by": "typesafe",
+    "name": "Jev Latest",
+    "description": "Structured decisions from state and typed questions, returning probabilities for classification, scoring, and routing.",
+    "context_window": 32000,
+    "max_tokens": 0,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_surfaces": [
+      "systemone"
+    ],
+    "pricing": {
+      "input": {
+        "text": {
+          "tiers": [
+            {
+              "cost": "0.000000042",
+              "min": 0
+            }
+          ]
+        }
+      },
+      "output": {
+        "text": {
+          "tiers": [
+            {
+              "cost": "0",
+              "min": 0
+            }
+          ]
+        }
+      }
+    },
+    "data_retention": "zero",
+    "data_retention_by_surface": {
+      "systemone": "zero"
     }
   }
 ]
